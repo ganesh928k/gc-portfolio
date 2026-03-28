@@ -2,7 +2,7 @@
 
 A modern, dark-themed portfolio built with **React + Vite + Tailwind CSS + Framer Motion**.
 
-🌐 **Live:** https://jaatxog.github.io/ganesh-portfolio/
+🌐 **Live:** https://jaatxog.github.io/gc-portfolio/
 
 ## 🚀 Local Development
 
