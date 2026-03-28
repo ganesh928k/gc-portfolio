@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import './index.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -11,6 +12,10 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 
 export default function App() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [])
+
   return (
     <div className="min-h-screen bg-[#020912]">
       <Navbar />
