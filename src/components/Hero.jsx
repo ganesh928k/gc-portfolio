@@ -216,7 +216,7 @@ export default function Hero() {
                 VIEW WORK
               </a>
               <a
-                href="https://github.com/jaatxog"
+                href="https://github.com/ganesh928k"
                 target="_blank"
                 rel="noreferrer"
                 className="px-6 py-3 font-mono text-sm border border-[#0f2545] text-slate-400 rounded hover:border-[#00d4ff] hover:text-[#00d4ff] transition-all duration-200 tracking-widest"
