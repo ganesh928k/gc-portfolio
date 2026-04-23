@@ -81,7 +81,7 @@ export default function Contact() {
                 <div className="text-2xl mb-2">🐙</div>
                 <div className="font-mono text-xs text-[#00ff9f]">GITHUB</div>
                 <div className="font-mono text-xs text-slate-500 mt-1 group-hover:text-slate-300 transition-colors">
-                  /jaatxog
+                  /ganesh928k
                 </div>
               </a>
             </div>
