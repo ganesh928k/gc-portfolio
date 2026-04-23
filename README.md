@@ -2,7 +2,7 @@
 
 My personal portfolio — built with React + Vite.
 
-🌐 https://jaatxog.github.io/gc-portfolio/
+🌐 https://ganesh928k.github.io/gc-portfolio/
 
 ## Stack
 
