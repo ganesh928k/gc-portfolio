@@ -84,7 +84,7 @@ export default function Projects() {
           className="text-center mt-10"
         >
           <a
-            href="https://github.com/jaatxog"
+            href="https://github.com/ganesh928k"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 font-mono text-xs glow-border px-6 py-3 text-[#00ff9f] rounded hover:bg-[#00ff9f]/10 transition-all duration-200 tracking-widest"
