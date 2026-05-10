@@ -41,7 +41,7 @@ export const skills = [
     color: "#7b2fff",
     items: [
       { name: "Oracle Cloud (OCI)", level: 80 },
-      { name: "AWS Fundamentals", level: 72 },
+      { name: "AWS Solutions", level: 72 },
       { name: "Apache / Nginx", level: 88 },
       { name: "MySQL / MariaDB", level: 85 },
       { name: "Backup & DR", level: 82 },
@@ -151,7 +151,7 @@ export const certifications = [
   { name: "Red Hat Certified Engineer", short: "RHCE", org: "Red Hat", color: "#ee0000", icon: "🎓" },
   { name: "Red Hat Certified System Administrator", short: "RHCSA", org: "Red Hat", color: "#ee0000", icon: "🎓" },
   { name: "Oracle Cloud Foundations Associate", short: "OCI", org: "Oracle", color: "#f80000", icon: "☁️" },
-  { name: "Amazon Cloud Foundations", short: "AWS", org: "Amazon", color: "#ff9900", icon: "☁️" },
+  { name: "AWS Architecting Solutions", short: "AWS", org: "Amazon", color: "#ff9900", icon: "☁️" },
 ];
 
 export const education = [
