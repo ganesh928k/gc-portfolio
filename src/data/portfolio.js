@@ -6,7 +6,8 @@ export const profile = {
   email: "gjat928@gmail.com",
   phone: "+91-8696383333",
   linkedin: "https://www.linkedin.com/in/ganesh928",
-  github: "https://github.com/jaatxog",
+  github: "https://github.com/ganesh928k",
+  githubUser: "ganesh928k",
   bio: "Detail-oriented L2 DevOps Engineer with hands-on experience in Linux infrastructure, Asterisk-based VoIP systems, SIP/PRI/GSM gateway administration, cloud fundamentals, and enterprise automation. Passionate about building reliable, scalable systems and continuously expanding expertise in cloud-native and DevOps technologies.",
 };
 

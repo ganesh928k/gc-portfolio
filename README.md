@@ -15,4 +15,3 @@ My personal portfolio — built with React + Vite.
 npm install
 npm run dev
 ```
-EOF

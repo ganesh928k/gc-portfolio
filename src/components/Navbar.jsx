@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { profile } from "../data/portfolio";
 
 const navLinks = [
   { label: "HOME", href: "#hero" },
@@ -56,7 +57,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="https://github.com/ganesh928k"
+            href={profile.github}
             target="_blank"
             rel="noreferrer"
             className="px-3 py-1.5 font-mono text-xs border border-[#00ff9f]/40 text-[#00ff9f] rounded hover:bg-[#00ff9f]/10 transition-all duration-200 tracking-wider"
@@ -69,6 +70,9 @@ export default function Navbar() {
         <button
           className="md:hidden text-[#00ff9f] font-mono text-lg"
           onClick={() => setOpen(!open)}
+          type="button"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={open}
         >
           {open ? "✕" : "☰"}
         </button>

@@ -11,14 +11,13 @@ const ROLES = [
 ];
 
 function useTyping(words, speed = 80, pause = 1800) {
-  const [text, setText] = useState("");
   const [wordIdx, setWordIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
   const timeout = useRef(null);
+  const current = words[wordIdx] ?? "";
 
   useEffect(() => {
-    const current = words[wordIdx];
     if (!deleting && charIdx < current.length) {
       timeout.current = setTimeout(() => setCharIdx(c => c + 1), speed);
     } else if (!deleting && charIdx === current.length) {
@@ -26,14 +25,15 @@ function useTyping(words, speed = 80, pause = 1800) {
     } else if (deleting && charIdx > 0) {
       timeout.current = setTimeout(() => setCharIdx(c => c - 1), speed / 2);
     } else if (deleting && charIdx === 0) {
-      setDeleting(false);
-      setWordIdx(i => (i + 1) % words.length);
+      timeout.current = setTimeout(() => {
+        setDeleting(false);
+        setWordIdx(i => (i + 1) % words.length);
+      }, speed);
     }
-    setText(current.slice(0, charIdx));
     return () => clearTimeout(timeout.current);
-  }, [charIdx, deleting, wordIdx, words, speed, pause]);
+  }, [charIdx, current.length, deleting, speed, pause, words.length]);
 
-  return text;
+  return current.slice(0, charIdx);
 }
 
 // Floating particle
@@ -135,10 +135,6 @@ export default function Hero() {
       {/* Particles */}
       {PARTICLES.map(p => <Particle key={p.id} {...p} />)}
 
-      {/* Gradient blobs */}
-      <div className="absolute top-20 left-1/4 w-96 h-96 bg-[#00ff9f]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-[#7b2fff]/8 rounded-full blur-3xl pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-16 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
 
@@ -216,7 +212,7 @@ export default function Hero() {
                 VIEW WORK
               </a>
               <a
-                href="https://github.com/ganesh928k"
+                href={profile.github}
                 target="_blank"
                 rel="noreferrer"
                 className="px-6 py-3 font-mono text-sm border border-[#0f2545] text-slate-400 rounded hover:border-[#00d4ff] hover:text-[#00d4ff] transition-all duration-200 tracking-widest"

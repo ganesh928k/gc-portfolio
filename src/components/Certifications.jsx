@@ -68,7 +68,7 @@ export default function Certifications() {
           className="mt-8 text-center"
         >
           <p className="font-mono text-xs text-slate-500">
-            All certifications are industry-verified and current
+            Certification IDs and verification links available on request
           </p>
         </motion.div>
       </div>

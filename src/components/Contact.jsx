@@ -1,7 +1,25 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { profile } from "../data/portfolio";
 
 export default function Contact() {
+  const [form, setForm] = useState({ name: "", subject: "", message: "" });
+
+  const updateField = (field) => (event) => {
+    setForm(current => ({ ...current, [field]: event.target.value }));
+  };
+
+  const sendEmail = (event) => {
+    event.preventDefault();
+    const subject = form.subject.trim() || "Portfolio contact";
+    const body = [
+      form.name.trim() ? `Name: ${form.name.trim()}` : null,
+      form.message.trim(),
+    ].filter(Boolean).join("\n\n");
+
+    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <section id="contact" className="py-24 px-4 sm:px-6 bg-[#050e1f]/50">
       <div className="max-w-4xl mx-auto">
@@ -81,7 +99,7 @@ export default function Contact() {
                 <div className="text-2xl mb-2">🐙</div>
                 <div className="font-mono text-xs text-[#00ff9f]">GITHUB</div>
                 <div className="font-mono text-xs text-slate-500 mt-1 group-hover:text-slate-300 transition-colors">
-                  /ganesh928k
+                  /{profile.githubUser}
                 </div>
               </a>
             </div>
@@ -100,14 +118,15 @@ export default function Contact() {
               </div>
 
               <form
-                action={`mailto:${profile.email}`}
-                method="GET"
+                onSubmit={sendEmail}
                 className="space-y-4"
               >
                 <div>
                   <label className="font-mono text-xs text-slate-500 block mb-1.5">NAME</label>
                   <input
                     name="name"
+                    value={form.name}
+                    onChange={updateField("name")}
                     className="w-full bg-[#0f2545] border border-[#0f2545] rounded px-3 py-2.5 font-mono text-sm text-white focus:outline-none focus:border-[#00ff9f]/50 transition-colors placeholder-slate-600"
                     placeholder="Your name"
                   />
@@ -116,6 +135,8 @@ export default function Contact() {
                   <label className="font-mono text-xs text-slate-500 block mb-1.5">SUBJECT</label>
                   <input
                     name="subject"
+                    value={form.subject}
+                    onChange={updateField("subject")}
                     className="w-full bg-[#0f2545] border border-[#0f2545] rounded px-3 py-2.5 font-mono text-sm text-white focus:outline-none focus:border-[#00ff9f]/50 transition-colors placeholder-slate-600"
                     placeholder="Job opportunity / collab"
                   />
@@ -123,7 +144,9 @@ export default function Contact() {
                 <div>
                   <label className="font-mono text-xs text-slate-500 block mb-1.5">MESSAGE</label>
                   <textarea
-                    name="body"
+                    name="message"
+                    value={form.message}
+                    onChange={updateField("message")}
                     rows={4}
                     className="w-full bg-[#0f2545] border border-[#0f2545] rounded px-3 py-2.5 font-mono text-sm text-white focus:outline-none focus:border-[#00ff9f]/50 transition-colors placeholder-slate-600 resize-none"
                     placeholder="Your message..."

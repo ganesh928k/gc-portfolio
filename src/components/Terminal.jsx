@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { profile } from "../data/portfolio";
 
 const COMMANDS = {
-  whoami: () => ["ganesh_choudhary", "L2 DevOps Engineer @ Avyukta Intellicall"],
+  whoami: () => ["ganesh_choudhary", `${profile.role} @ Avyukta Intellicall`],
   help: () => [
     "Available commands:",
     "  whoami       — show identity",
@@ -38,11 +39,11 @@ const COMMANDS = {
     "  Stack: Asterisk · VICIdial · RHEL · Bash · OCI",
   ],
   contact: () => [
-    "Email:    gjat928@gmail.com",
-    "Phone:    +91-8696383333",
+    `Email:    ${profile.email}`,
+    `Phone:    ${profile.phone}`,
     "LinkedIn: linkedin.com/in/ganesh928",
-    "GitHub:   github.com/ganesh928k",
-    "Location: Jaipur, Rajasthan, India",
+    `GitHub:   github.com/${profile.githubUser}`,
+    `Location: ${profile.location}`,
   ],
   uptime: () => {
     const s = 847392 + Math.floor(Date.now() / 1000) % 1000;
@@ -157,13 +158,13 @@ export default function Terminal() {
 
             {/* Input row */}
             <div className="flex items-center gap-2 px-4 py-3 border-t border-[#0f2545] bg-[#020912]/50">
-              <span className="font-mono text-xs text-[#00ff9f]">ganesh@portfolio:~$</span>
+              <span className="font-mono text-xs text-[#00ff9f] flex-shrink-0">ganesh@portfolio:~$</span>
               <input
                 ref={inputRef}
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={onKey}
-                className="flex-1 bg-transparent outline-none font-mono text-sm text-white caret-[#00ff9f]"
+                className="min-w-0 flex-1 bg-transparent outline-none font-mono text-sm text-white caret-[#00ff9f]"
                 placeholder="type a command..."
                 autoComplete="off"
                 spellCheck={false}
