@@ -1,108 +1,82 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { skills } from "../data/portfolio";
-
-function SkillBar({ name, level, color, inView }) {
-  return (
-    <div className="mb-3">
-      <div className="flex justify-between font-mono text-xs mb-1.5">
-        <span className="text-slate-300">{name}</span>
-        <span style={{ color }}>{level}%</span>
-      </div>
-      <div className="skill-bar">
-        <motion.div
-          className="skill-fill"
-          style={{ background: `linear-gradient(90deg, ${color}, ${color}aa)`, boxShadow: `0 0 8px ${color}` }}
-          initial={{ width: 0 }}
-          animate={{ width: inView ? `${level}%` : 0 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-        />
-      </div>
-    </div>
-  );
-}
+import { motion } from 'framer-motion';
+import { skills } from '../data/portfolio';
 
 export default function Skills() {
-  const [inView, setInView] = useState(false);
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
 
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 bg-[#050e1f]/50">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          onViewportEnter={() => setInView(true)}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="font-mono text-[#00ff9f] text-xs tracking-widest mb-2">
-            <span className="text-slate-500">$ </span>ls -la skills/
-          </div>
-          <h2 className="font-display text-4xl font-bold text-white">
-            TECH <span className="gradient-text">ARSENAL</span>
-          </h2>
-        </motion.div>
+    <section id="skills" className="py-24 relative z-10 bg-bg2/50 border-y border-white/5">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
+        
+        <div className="text-center mb-16">
+          <span className="section-label justify-center">02. Expertise</span>
+          <h2 className="section-title mt-4">Technical Arsenal</h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {skills.map((cat, i) => (
+        <div className="grid md:grid-cols-2 gap-8">
+          {skills.map((category, idx) => (
             <motion.div
-              key={cat.category}
+              key={category.category}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.6 }}
-              className="glow-border corner-box bg-[#0a1628] rounded-lg p-6"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.1 }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="glass p-8 group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-indigo/30 transition-all duration-300"
             >
-              {/* Category header */}
-              <div className="flex items-center gap-3 mb-5 pb-3 border-b border-[#0f2545]">
-                <div
-                  className="w-8 h-8 rounded flex items-center justify-center text-base"
-                  style={{ background: `${cat.color}15`, border: `1px solid ${cat.color}40` }}
+              <div className="flex items-center gap-4 mb-8">
+                <div 
+                  className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-lg"
+                  style={{ backgroundColor: `${category.color}15`, color: category.color }}
                 >
-                  {cat.icon}
+                  {category.icon}
                 </div>
-                <div>
-                  <div className="font-display text-sm font-bold text-white">{cat.category}</div>
-                  <div className="font-mono text-xs" style={{ color: cat.color }}>
-                    {cat.items.length} skills
-                  </div>
-                </div>
+                <h3 className="text-xl font-heading font-semibold text-white">
+                  {category.category}
+                </h3>
               </div>
 
-              {/* Skill bars */}
-              <div>
-                {cat.items.map((skill) => (
-                  <SkillBar key={skill.name} {...skill} color={cat.color} inView={inView} />
+              <motion.div 
+                variants={container}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="space-y-5"
+              >
+                {category.items.map((skill) => (
+                  <motion.div key={skill.name} variants={item}>
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="text-muted font-medium">{skill.name}</span>
+                      <span className="font-mono text-xs" style={{ color: category.color }}>{skill.level}%</span>
+                    </div>
+                    <div className="h-1.5 w-full bg-surface-2 rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+                        className="h-full rounded-full"
+                        style={{ backgroundColor: category.color }}
+                      />
+                    </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
-
-        {/* Tech badges */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="mt-10"
-        >
-          <div className="font-mono text-xs text-slate-500 mb-4 text-center">// TOOLS & TECHNOLOGIES</div>
-          <div className="flex flex-wrap gap-2 justify-center">
-            {[
-              "Asterisk", "VICIdial", "CentOS", "RHEL", "AlmaLinux", "Ubuntu",
-              "Apache", "Nginx", "MySQL", "MariaDB", "Bash", "OCI", "AWS",
-              "firewalld", "SELinux", "fail2ban", "SIP", "RTP", "iptables", "SSH"
-            ].map(tech => (
-              <span
-                key={tech}
-                className="font-mono text-xs px-3 py-1.5 bg-[#0f2545] border border-[#0f2545] text-slate-400 rounded-sm hover:border-[#00ff9f]/40 hover:text-[#00ff9f] transition-all duration-200 cursor-default"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

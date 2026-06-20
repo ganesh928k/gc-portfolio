@@ -1,143 +1,73 @@
-import { motion } from "framer-motion";
-import { profile, education } from "../data/portfolio";
+import { motion } from 'framer-motion';
+import { profile } from '../data/portfolio';
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
+    <section id="about" className="py-24 relative z-10">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
+          viewport={{ once: true, margin: "-100px" }}
+          className="mb-12"
         >
-          <div className="font-mono text-[#00ff9f] text-xs tracking-widest mb-2">
-            <span className="text-slate-500">$ </span>cat about.md
-          </div>
-          <h2 className="font-display text-4xl font-bold text-white">
-            ABOUT <span className="gradient-text">ME</span>
-          </h2>
+          <span className="section-label">01. Background</span>
+          <h2 className="section-title mt-4">About Me</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Bio */}
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            className="glass-lg p-8 md:p-10 relative overflow-hidden"
           >
-            <div className="glow-border corner-box bg-[#0a1628] rounded-lg p-6 mb-6">
-              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#0f2545]">
-                <span className="text-[#00ff9f] font-mono text-xs">// PROFILE</span>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo/10 blur-3xl rounded-full mix-blend-screen" />
+            
+            <p className="text-muted leading-relaxed text-lg relative z-10">
+              {profile.bio}
+            </p>
+            
+            <div className="mt-8 grid grid-cols-2 gap-6 relative z-10">
+              <div className="border-l-4 border-indigo pl-4 relative py-2">
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo/20 to-transparent -z-10 blur-md" />
+                <p className="text-4xl font-heading font-bold text-white mb-1">3+</p>
+                <p className="text-sm font-mono text-muted uppercase">Years Experience</p>
               </div>
-              <p className="text-slate-300 leading-relaxed text-sm">
-                {profile.bio}
-              </p>
-              <div className="mt-6 grid grid-cols-2 gap-4">
-                {[
-                  { label: "LOCATION", value: "Jaipur, India" },
-                  { label: "STATUS", value: "Open to Opportunities" },
-                  { label: "EXPERIENCE", value: "2+ Years" },
-                  { label: "CERTS", value: "RHCE, RHCSA, OCI, AWS" },
-                ].map(item => (
-                  <div key={item.label}>
-                    <div className="font-mono text-xs text-slate-500 mb-1">{item.label}</div>
-                    <div className="font-mono text-xs text-[#00ff9f]">{item.value}</div>
-                  </div>
-                ))}
+              <div className="border-l-2 border-cyan/30 pl-4">
+                <p className="text-3xl font-heading font-bold text-white mb-1">20+</p>
+                <p className="text-sm font-mono text-muted uppercase">Servers Managed</p>
               </div>
-            </div>
-
-            {/* Quick links */}
-            <div className="flex gap-3">
-              <a
-                href={profile.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="flex-1 text-center py-2.5 font-mono text-xs glow-border text-[#00d4ff] rounded hover:bg-[#00d4ff]/10 transition-all"
-              >
-                LINKEDIN ↗
-              </a>
-              <a
-                href={profile.github}
-                target="_blank"
-                rel="noreferrer"
-                className="flex-1 text-center py-2.5 font-mono text-xs border border-[#0f2545] text-slate-400 rounded hover:border-[#00ff9f]/40 hover:text-[#00ff9f] transition-all"
-              >
-                GITHUB ↗
-              </a>
             </div>
           </motion.div>
 
-          {/* Education + Journey */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            {/* Education */}
-            <div className="glow-border corner-box bg-[#0a1628] rounded-lg p-6">
-              <div className="font-mono text-xs text-[#00ff9f] mb-4 pb-3 border-b border-[#0f2545]">
-                // EDUCATION
-              </div>
-              <div className="space-y-4">
-                {education.map((edu, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex gap-4"
-                  >
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#00ff9f] mt-1.5 flex-shrink-0" />
-                    <div>
-                      <div className="text-white text-sm font-semibold">{edu.degree}</div>
-                      <div className="text-slate-400 text-xs">{edu.school}</div>
-                      <div className="text-[#00ff9f] font-mono text-xs mt-0.5">{edu.year}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+            <div className="glass p-6 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-indigo/50 transition-all duration-300">
+              <h3 className="text-xl font-heading font-semibold text-white mb-2 flex items-center gap-2">
+                <span className="text-indigo">⚡</span> Infrastructure First
+              </h3>
+              <p className="text-muted text-sm leading-relaxed">
+                I believe in building resilient infrastructure that scales. From bare-metal Linux servers to cloud environments, I focus on security, performance, and automation.
+              </p>
             </div>
-
-            {/* Journey stats */}
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { val: "2+", label: "YRS EXP" },
-                { val: "4", label: "CERTS" },
-                { val: "6+", label: "PROJECTS" },
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + i * 0.1 }}
-                  className="glow-border bg-[#0a1628] rounded-lg p-4 text-center"
-                >
-                  <div className="font-display text-2xl font-bold gradient-text">{stat.val}</div>
-                  <div className="font-mono text-xs text-slate-500 mt-1">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Hobbies */}
-            <div className="glow-border bg-[#0a1628] rounded-lg p-5">
-              <div className="font-mono text-xs text-slate-500 mb-3">// PERSONAL</div>
-              <div className="flex flex-wrap gap-2">
-                {["🎮 Video Games", "🎵 Music", "🏏 Cricket", "🏐 Volleyball", "🐧 Linux Tinkering"].map(h => (
-                  <span key={h} className="font-mono text-xs px-2.5 py-1 bg-[#0f2545] text-slate-300 rounded-sm">
-                    {h}
-                  </span>
-                ))}
-              </div>
+            
+            <div className="glass p-6 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-cyan/50 transition-all duration-300">
+              <h3 className="text-xl font-heading font-semibold text-white mb-2 flex items-center gap-2">
+                <span className="text-cyan">📞</span> Telephony Expert
+              </h3>
+              <p className="text-muted text-sm leading-relaxed">
+                Specialized in Asterisk and VICIdial deployments. I handle complex SIP routing, trunk configurations, and troubleshoot deep VoIP network issues.
+              </p>
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>

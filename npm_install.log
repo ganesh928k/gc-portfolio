@@ -1,0 +1,283 @@
+npm verb cli /usr/bin/node /usr/bin/npm
+npm info using npm@8.19.4
+npm info using node@v16.20.2
+npm timing npm:load:whichnode Completed in 0ms
+npm timing config:load:defaults Completed in 1ms
+npm timing config:load:file:/usr/lib/node_modules/npm/npmrc Completed in 4ms
+npm timing config:load:builtin Completed in 5ms
+npm timing config:load:cli Completed in 3ms
+npm timing config:load:env Completed in 0ms
+npm timing config:load:file:/root/my-portfolio/.npmrc Completed in 0ms
+npm timing config:load:project Completed in 3ms
+npm timing config:load:file:/root/.npmrc Completed in 1ms
+npm timing config:load:user Completed in 1ms
+npm timing config:load:file:/etc/npmrc Completed in 1ms
+npm timing config:load:global Completed in 1ms
+npm timing config:load:validate Completed in 1ms
+npm timing config:load:credentials Completed in 1ms
+npm timing config:load:setEnvs Completed in 1ms
+npm timing config:load Completed in 17ms
+npm timing npm:load:configload Completed in 18ms
+npm timing npm:load:mkdirpcache Completed in 3ms
+npm timing npm:load:mkdirplogs Completed in 1ms
+npm verb title npm install
+npm verb argv "install" "--loglevel" "verbose"
+npm timing npm:load:setTitle Completed in 1ms
+npm timing config:load:flatten Completed in 4ms
+npm timing npm:load:display Completed in 9ms
+npm verb logfile logs-max:10 dir:/root/.npm/_logs
+npm verb logfile /root/.npm/_logs/2026-06-19T13_03_59_690Z-debug-0.log
+npm timing npm:load:logFile Completed in 12ms
+npm timing npm:load:timers Completed in 0ms
+npm timing npm:load:configScope Completed in 0ms
+npm timing npm:load Completed in 47ms
+npm timing arborist:ctor Completed in 1ms
+npm timing idealTree:init Completed in 225ms
+npm timing idealTree:userRequests Completed in 0ms
+npm timing idealTree:#root Completed in 1ms
+npm timing idealTree:buildDeps Completed in 1ms
+npm timing idealTree:fixDepFlags Completed in 0ms
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@eslint/config-array@0.21.2',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@eslint/config-helpers@0.4.2',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@eslint/core@0.17.0',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@eslint/eslintrc@3.3.5',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'globals@14.0.0',
+npm WARN EBADENGINE   required: { node: '>=18' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@eslint/js@9.39.4',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@eslint/object-schema@2.1.7',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@eslint/plugin-kit@0.4.1',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@humanfs/core@0.19.1',
+npm WARN EBADENGINE   required: { node: '>=18.18.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@humanfs/node@0.16.7',
+npm WARN EBADENGINE   required: { node: '>=18.18.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@humanwhocodes/retry@0.4.3',
+npm WARN EBADENGINE   required: { node: '>=18.18' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: '@vitejs/plugin-react@6.0.1',
+npm WARN EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'eslint@9.39.4',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'eslint-plugin-react-hooks@7.0.1',
+npm WARN EBADENGINE   required: { node: '>=18' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'eslint-scope@8.4.0',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'eslint-visitor-keys@4.2.1',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'espree@10.4.0',
+npm WARN EBADENGINE   required: { node: '^18.18.0 || ^20.9.0 || >=21.1.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'globals@17.4.0',
+npm WARN EBADENGINE   required: { node: '>=18' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'postcss-load-config@6.0.1',
+npm WARN EBADENGINE   required: { node: '>= 18' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'rolldown@1.0.1',
+npm WARN EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'vite@8.0.13',
+npm WARN EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'zod-validation-error@4.0.2',
+npm WARN EBADENGINE   required: { node: '>=18.0.0' },
+npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+npm WARN EBADENGINE }
+npm timing idealTree Completed in 251ms
+npm timing arborist:ctor Completed in 0ms
+npm timing reify:loadTrees Completed in 383ms
+npm timing reify:diffTrees Completed in 9ms
+npm timing reify:retireShallow Completed in 1ms
+npm timing reify:createSparse Completed in 29ms
+npm timing reify:loadBundles Completed in 0ms
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/lightningcss-win32-x64-msvc
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/lightningcss-win32-arm64-msvc
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/lightningcss-linux-arm64-musl
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/lightningcss-linux-arm64-gnu
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/lightningcss-linux-arm-gnueabihf
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/lightningcss-freebsd-x64
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/lightningcss-darwin-x64
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/lightningcss-darwin-arm64
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/lightningcss-android-arm64
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/fsevents
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-win32-x64-msvc
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-win32-arm64-msvc
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-wasm32-wasi
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@emnapi/core
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@emnapi/runtime
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@napi-rs/wasm-runtime
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@emnapi/wasi-threads
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@tybys/wasm-util
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-openharmony-arm64
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-linux-x64-musl
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-linux-x64-gnu
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-linux-s390x-gnu
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-linux-ppc64-gnu
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-linux-arm64-musl
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-linux-arm64-gnu
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-linux-arm-gnueabihf
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-freebsd-x64
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-darwin-x64
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-darwin-arm64
+npm verb reify failed optional dependency /root/my-portfolio/node_modules/@rolldown/binding-android-arm64
+npm timing reifyNode:node_modules/lightningcss-win32-x64-msvc Completed in 40ms
+npm timing reifyNode:node_modules/lightningcss-win32-arm64-msvc Completed in 40ms
+npm timing reifyNode:node_modules/lightningcss-linux-arm64-musl Completed in 40ms
+npm timing reifyNode:node_modules/lightningcss-linux-arm64-gnu Completed in 40ms
+npm timing reifyNode:node_modules/lightningcss-linux-arm-gnueabihf Completed in 41ms
+npm timing reifyNode:node_modules/lightningcss-freebsd-x64 Completed in 41ms
+npm timing reifyNode:node_modules/lightningcss-darwin-x64 Completed in 41ms
+npm timing reifyNode:node_modules/lightningcss-darwin-arm64 Completed in 41ms
+npm timing reifyNode:node_modules/lightningcss-android-arm64 Completed in 41ms
+npm timing reifyNode:node_modules/fsevents Completed in 41ms
+npm timing reifyNode:node_modules/@rolldown/binding-win32-x64-msvc Completed in 41ms
+npm timing reifyNode:node_modules/@rolldown/binding-win32-arm64-msvc Completed in 42ms
+npm timing reifyNode:node_modules/@rolldown/binding-wasm32-wasi Completed in 42ms
+npm timing reifyNode:node_modules/@rolldown/binding-openharmony-arm64 Completed in 42ms
+npm timing reifyNode:node_modules/@rolldown/binding-linux-x64-musl Completed in 42ms
+npm timing reifyNode:node_modules/@rolldown/binding-linux-x64-gnu Completed in 42ms
+npm timing reifyNode:node_modules/@rolldown/binding-linux-s390x-gnu Completed in 42ms
+npm timing reifyNode:node_modules/@rolldown/binding-linux-ppc64-gnu Completed in 42ms
+npm timing reifyNode:node_modules/@rolldown/binding-linux-arm64-musl Completed in 43ms
+npm timing reifyNode:node_modules/@rolldown/binding-linux-arm64-gnu Completed in 43ms
+npm timing reifyNode:node_modules/@rolldown/binding-linux-arm-gnueabihf Completed in 43ms
+npm timing reifyNode:node_modules/@rolldown/binding-freebsd-x64 Completed in 43ms
+npm timing reifyNode:node_modules/@rolldown/binding-darwin-x64 Completed in 43ms
+npm timing reifyNode:node_modules/@rolldown/binding-darwin-arm64 Completed in 43ms
+npm timing reifyNode:node_modules/@rolldown/binding-android-arm64 Completed in 43ms
+npm timing reifyNode:node_modules/@emnapi/wasi-threads Completed in 167ms
+npm timing reifyNode:node_modules/@emnapi/runtime Completed in 174ms
+npm timing reifyNode:node_modules/@tybys/wasm-util Completed in 199ms
+npm timing reifyNode:node_modules/@emnapi/core Completed in 204ms
+npm timing reifyNode:node_modules/@napi-rs/wasm-runtime Completed in 238ms
+npm timing reify:unpack Completed in 240ms
+npm timing reify:unretire Completed in 0ms
+npm timing build:queue Completed in 4ms
+npm timing build:deps Completed in 4ms
+npm timing build Completed in 4ms
+npm timing reify:build Completed in 6ms
+npm timing reify:trash Completed in 29ms
+npm timing reify:save Completed in 67ms
+npm http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 456ms
+npm timing auditReport:getReport Completed in 461ms
+npm timing metavuln:cache:get:security-advisory:@babel/core:Zln+QA07BV/Oi7itx9apxxy4xJbumLkkANQUt5PjJ78DC5ZV43jZzlyB53Wbd4EFPchd//Z+tuWP/hSWpdl0bg== Completed in 13ms
+npm timing metavuln:cache:get:security-advisory:js-yaml:zLyc7ccr/04yH7b5Vv4FsmTzbKp/8NFaNayD9NDWRrTuzCFigqcjwmHojvyaDlXkFcy930GrN67sYyBaq+qz3g== Completed in 12ms
+npm timing metavuln:cache:get:security-advisory:vite:u4GYj3X5lumBl2qXyVyop3T32GKOYgJzejrbOo6ijt9+JItvwGfVDlhZgbTnYVc0gaCrgt6JriyZZ6VluS1bYg== Completed in 11ms
+npm timing metavuln:cache:get:security-advisory:vite:2LcbDyaIv7UPEOFpBuLmJ2yYwVuxBgWiG4CsmI9Nn69RnkSzIirx2KBarNuQOee11EBYxIWLh1fgUuT3yZxNnQ== Completed in 12ms
+npm http fetch GET 200 https://registry.npmjs.org/js-yaml 49ms (cache revalidated)
+npm timing metavuln:packument:js-yaml Completed in 50ms
+npm timing metavuln:load:security-advisory:js-yaml:1120792 Completed in 2ms
+npm timing metavuln:calculate:security-advisory:js-yaml:1120792 Completed in 53ms
+npm http fetch GET 200 https://registry.npmjs.org/@babel%2fcore 82ms (cache revalidated)
+npm timing metavuln:packument:@babel/core Completed in 85ms
+npm timing metavuln:load:security-advisory:@babel/core:1120793 Completed in 2ms
+npm timing metavuln:calculate:security-advisory:@babel/core:1120793 Completed in 89ms
+npm http fetch GET 200 https://registry.npmjs.org/vite 89ms (cache revalidated)
+npm timing metavuln:packument:vite Completed in 109ms
+npm timing metavuln:load:security-advisory:vite:1120786 Completed in 7ms
+npm timing metavuln:calculate:security-advisory:vite:1120786 Completed in 116ms
+npm timing metavuln:load:security-advisory:vite:1120791 Completed in 6ms
+npm timing metavuln:calculate:security-advisory:vite:1120791 Completed in 123ms
+npm timing metavuln:cache:get:security-advisory:eslint-plugin-react-hooks:aaW8qpsncDtkB/yBwO4Zxz2j5maIg/jUmZ3mw0EpHEY1UO20YPiG3WiBV4+zEtUtT+XbjaOnA5tPXdaqLLFiVw== Completed in 5ms
+npm timing metavuln:cache:get:security-advisory:@babel/helper-module-transforms:pcBn0qPci245arYL4VKVgPKgRVlHxbxB5tddDNBRwGRwUpAYl1xIDhlFgrJOuq/mjG0QrIRgdiliZoWjGwbO5w== Completed in 7ms
+npm http fetch GET 200 https://registry.npmjs.org/eslint-plugin-react-hooks 48ms (cache revalidated)
+npm timing metavuln:packument:eslint-plugin-react-hooks Completed in 75ms
+npm timing metavuln:load:security-advisory:eslint-plugin-react-hooks:Zln+QA07BV/Oi7itx9apxxy4xJbumLkkANQUt5PjJ78DC5ZV43jZzlyB53Wbd4EFPchd//Z+tuWP/hSWpdl0bg== Completed in 38ms
+npm timing metavuln:calculate:security-advisory:eslint-plugin-react-hooks:Zln+QA07BV/Oi7itx9apxxy4xJbumLkkANQUt5PjJ78DC5ZV43jZzlyB53Wbd4EFPchd//Z+tuWP/hSWpdl0bg== Completed in 113ms
+npm http fetch GET 200 https://registry.npmjs.org/@babel%2fhelper-module-transforms 119ms (cache revalidated)
+npm timing metavuln:packument:@babel/helper-module-transforms Completed in 121ms
+npm timing metavuln:load:security-advisory:@babel/helper-module-transforms:Zln+QA07BV/Oi7itx9apxxy4xJbumLkkANQUt5PjJ78DC5ZV43jZzlyB53Wbd4EFPchd//Z+tuWP/hSWpdl0bg== Completed in 3ms
+npm timing metavuln:calculate:security-advisory:@babel/helper-module-transforms:Zln+QA07BV/Oi7itx9apxxy4xJbumLkkANQUt5PjJ78DC5ZV43jZzlyB53Wbd4EFPchd//Z+tuWP/hSWpdl0bg== Completed in 125ms
+npm timing metavuln:cache:get:security-advisory:@eslint/eslintrc:brxsgXV3YvTekTz7iYDINk0LGW20cROQQ0MU88/1laYLh89phPR+aAnO+ua8p1JrG1JmKMsa7AT6UGb6KqQL9w== Completed in 23ms
+npm http fetch GET 200 https://registry.npmjs.org/@eslint%2feslintrc 72ms (cache revalidated)
+npm timing metavuln:packument:@eslint/eslintrc Completed in 74ms
+npm timing metavuln:load:security-advisory:@eslint/eslintrc:zLyc7ccr/04yH7b5Vv4FsmTzbKp/8NFaNayD9NDWRrTuzCFigqcjwmHojvyaDlXkFcy930GrN67sYyBaq+qz3g== Completed in 1ms
+npm timing metavuln:calculate:security-advisory:@eslint/eslintrc:zLyc7ccr/04yH7b5Vv4FsmTzbKp/8NFaNayD9NDWRrTuzCFigqcjwmHojvyaDlXkFcy930GrN67sYyBaq+qz3g== Completed in 75ms
+npm timing metavuln:cache:get:security-advisory:@vitejs/plugin-react:8qqU48vPAREa7Dl4HK4M72U8PVuuO9VsmFi77JEsSqIsH+oEWZfEDy3SNaTZkgrX5XNNpi7wUj4WWXNmxueFYQ== Completed in 3ms
+npm http fetch GET 200 https://registry.npmjs.org/@vitejs%2fplugin-react 43ms (cache revalidated)
+npm timing metavuln:packument:@vitejs/plugin-react Completed in 45ms
+npm timing metavuln:load:security-advisory:@vitejs/plugin-react:u4GYj3X5lumBl2qXyVyop3T32GKOYgJzejrbOo6ijt9+JItvwGfVDlhZgbTnYVc0gaCrgt6JriyZZ6VluS1bYg== Completed in 0ms
+npm timing metavuln:calculate:security-advisory:@vitejs/plugin-react:u4GYj3X5lumBl2qXyVyop3T32GKOYgJzejrbOo6ijt9+JItvwGfVDlhZgbTnYVc0gaCrgt6JriyZZ6VluS1bYg== Completed in 46ms
+npm timing auditReport:init Completed in 386ms
+npm timing reify:audit Completed in 850ms
+npm timing reify Completed in 1286ms
+
+up to date, audited 224 packages in 1s
+
+55 packages are looking for funding
+  run `npm fund` for details
+
+3 vulnerabilities (1 low, 1 moderate, 1 high)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+npm timing command:install Completed in 1324ms
+npm verb exit 0
+npm timing npm Completed in 1483ms
+npm info ok 

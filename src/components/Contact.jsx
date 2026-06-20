@@ -1,166 +1,111 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { profile } from "../data/portfolio";
+import { motion } from 'framer-motion';
+import { profile } from '../data/portfolio';
+import { IconMail, IconBrandLinkedin, IconBrandGithub, IconMapPin, IconPhone } from '@tabler/icons-react';
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", subject: "", message: "" });
-
-  const updateField = (field) => (event) => {
-    setForm(current => ({ ...current, [field]: event.target.value }));
-  };
-
-  const sendEmail = (event) => {
-    event.preventDefault();
-    const subject = form.subject.trim() || "Portfolio contact";
-    const body = [
-      form.name.trim() ? `Name: ${form.name.trim()}` : null,
-      form.message.trim(),
-    ].filter(Boolean).join("\n\n");
-
-    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  };
-
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 bg-[#050e1f]/50">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="font-mono text-[#00ff9f] text-xs tracking-widest mb-2">
-            <span className="text-slate-500">$ </span>ping ganesh
-          </div>
-          <h2 className="font-display text-4xl font-bold text-white">
-            GET IN <span className="gradient-text">TOUCH</span>
-          </h2>
-        </motion.div>
+    <section id="contact" className="py-24 relative z-10 border-t border-white/5 bg-bg2/30">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
+        
+        <div className="text-center mb-16">
+          <span className="section-label justify-center">06. Connect</span>
+          <h2 className="section-title mt-4">Get In Touch</h2>
+          <p className="text-muted mt-4 max-w-2xl mx-auto">
+            Currently open to new opportunities. Whether you have a question, a project proposal, or just want to say hi, I'll try my best to get back to you!
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20">
+          
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-5"
           >
-            <div className="glow-border corner-box bg-[#0a1628] rounded-lg p-6">
-              <div className="font-mono text-xs text-[#00ff9f] mb-4 pb-3 border-b border-[#0f2545]">
-                // CONTACT DETAILS
+            <h3 className="text-2xl font-heading font-semibold text-white mb-6">Contact Info</h3>
+            
+            <div className="space-y-6 mb-10">
+              <a href={`mailto:${profile.email}`} className="flex items-center gap-4 group">
+                <div className="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center text-cyan group-hover:bg-cyan/10 group-hover:border-cyan/30 transition-all">
+                  <IconMail size={20} />
+                </div>
+                <div>
+                  <p className="text-sm text-muted font-mono mb-0.5">Email</p>
+                  <p className="text-white group-hover:text-cyan transition-colors">{profile.email}</p>
+                </div>
+              </a>
+              
+              <div className="flex items-center gap-4 group">
+                <div className="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center text-indigo group-hover:bg-indigo/10 group-hover:border-indigo/30 transition-all">
+                  <IconPhone size={20} />
+                </div>
+                <div>
+                  <p className="text-sm text-muted font-mono mb-0.5">Phone</p>
+                  <p className="text-white group-hover:text-indigo transition-colors">{profile.phone}</p>
+                </div>
               </div>
-              <div className="space-y-4">
-                {[
-                  { icon: "✉", label: "EMAIL", value: profile.email, href: `mailto:${profile.email}` },
-                  { icon: "📱", label: "PHONE", value: profile.phone, href: `tel:${profile.phone}` },
-                  { icon: "📍", label: "LOCATION", value: profile.location, href: null },
-                ].map(item => (
-                  <div key={item.label} className="flex items-start gap-3">
-                    <span className="text-lg">{item.icon}</span>
-                    <div>
-                      <div className="font-mono text-xs text-slate-500">{item.label}</div>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className="font-mono text-sm text-[#00ff9f] hover:text-[#00d4ff] transition-colors"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <div className="font-mono text-sm text-slate-300">{item.value}</div>
-                      )}
-                    </div>
-                  </div>
-                ))}
+
+              <div className="flex items-center gap-4 group">
+                <div className="w-12 h-12 rounded-full bg-surface border border-border flex items-center justify-center text-emerald group-hover:bg-emerald/10 group-hover:border-emerald/30 transition-all">
+                  <IconMapPin size={20} />
+                </div>
+                <div>
+                  <p className="text-sm text-muted font-mono mb-0.5">Location</p>
+                  <p className="text-white group-hover:text-emerald transition-colors">{profile.location}</p>
+                </div>
               </div>
             </div>
 
-            {/* Social links */}
-            <div className="grid grid-cols-2 gap-3">
-              <a
-                href={profile.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="glow-border bg-[#0a1628] rounded-lg p-4 text-center group hover:bg-[#00d4ff]/5 transition-all"
-              >
-                <div className="text-2xl mb-2">💼</div>
-                <div className="font-mono text-xs text-[#00d4ff]">LINKEDIN</div>
-                <div className="font-mono text-xs text-slate-500 mt-1 group-hover:text-slate-300 transition-colors">
-                  /in/ganesh928
-                </div>
+            <h3 className="text-lg font-heading font-semibold text-white mb-4">Socials</h3>
+            <div className="flex gap-4">
+              <a href={profile.github} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-muted hover:text-white hover:border-white/30 transition-all">
+                <IconBrandGithub size={20} />
               </a>
-              <a
-                href={profile.github}
-                target="_blank"
-                rel="noreferrer"
-                className="glow-border bg-[#0a1628] rounded-lg p-4 text-center group hover:bg-[#00ff9f]/5 transition-all"
-              >
-                <div className="text-2xl mb-2">🐙</div>
-                <div className="font-mono text-xs text-[#00ff9f]">GITHUB</div>
-                <div className="font-mono text-xs text-slate-500 mt-1 group-hover:text-slate-300 transition-colors">
-                  /{profile.githubUser}
-                </div>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-surface border border-border flex items-center justify-center text-muted hover:text-[#0a66c2] hover:border-[#0a66c2]/30 transition-all">
+                <IconBrandLinkedin size={20} />
               </a>
             </div>
           </motion.div>
 
-          {/* Message panel */}
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            className="glass-lg p-8"
           >
-            <div className="glow-border corner-box bg-[#0a1628] rounded-lg p-6 h-full">
-              <div className="font-mono text-xs text-[#00ff9f] mb-6 pb-3 border-b border-[#0f2545]">
-                // SEND A MESSAGE
+            <form action={`https://formsubmit.co/${profile.email}`} method="POST" className="space-y-5">
+              <input type="hidden" name="_subject" value="New submission from Portfolio!" />
+              <input type="hidden" name="_captcha" value="false" />
+              
+              <div className="grid grid-cols-2 gap-5">
+                <div className="space-y-1.5">
+                  <label className="text-sm text-muted font-medium ml-1">Name</label>
+                  <input type="text" name="name" required placeholder="John Doe" className="glass-input" />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-sm text-muted font-medium ml-1">Email</label>
+                  <input type="email" name="email" required placeholder="john@example.com" className="glass-input" />
+                </div>
               </div>
-
-              <form
-                onSubmit={sendEmail}
-                className="space-y-4"
-              >
-                <div>
-                  <label className="font-mono text-xs text-slate-500 block mb-1.5">NAME</label>
-                  <input
-                    name="name"
-                    value={form.name}
-                    onChange={updateField("name")}
-                    className="w-full bg-[#0f2545] border border-[#0f2545] rounded px-3 py-2.5 font-mono text-sm text-white focus:outline-none focus:border-[#00ff9f]/50 transition-colors placeholder-slate-600"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label className="font-mono text-xs text-slate-500 block mb-1.5">SUBJECT</label>
-                  <input
-                    name="subject"
-                    value={form.subject}
-                    onChange={updateField("subject")}
-                    className="w-full bg-[#0f2545] border border-[#0f2545] rounded px-3 py-2.5 font-mono text-sm text-white focus:outline-none focus:border-[#00ff9f]/50 transition-colors placeholder-slate-600"
-                    placeholder="Job opportunity / collab"
-                  />
-                </div>
-                <div>
-                  <label className="font-mono text-xs text-slate-500 block mb-1.5">MESSAGE</label>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={updateField("message")}
-                    rows={4}
-                    className="w-full bg-[#0f2545] border border-[#0f2545] rounded px-3 py-2.5 font-mono text-sm text-white focus:outline-none focus:border-[#00ff9f]/50 transition-colors placeholder-slate-600 resize-none"
-                    placeholder="Your message..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 font-mono text-xs font-bold bg-[#00ff9f] text-[#020912] rounded hover:bg-[#00d4ff] transition-all duration-200 tracking-widest"
-                >
-                  SEND MESSAGE ↗
-                </button>
-              </form>
-            </div>
+              
+              <div className="space-y-1.5">
+                <label className="text-sm text-muted font-medium ml-1">Subject</label>
+                <input type="text" name="subject" required placeholder="Job Opportunity / Project" className="glass-input" />
+              </div>
+              
+              <div className="space-y-1.5">
+                <label className="text-sm text-muted font-medium ml-1">Message</label>
+                <textarea name="message" required rows="4" placeholder="Hello Ganesh..." className="glass-input resize-none"></textarea>
+              </div>
+              
+              <button type="submit" className="btn-grad w-full justify-center mt-2">
+                <span>Send Message</span>
+              </button>
+            </form>
           </motion.div>
+
         </div>
       </div>
     </section>

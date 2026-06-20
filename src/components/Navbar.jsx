@@ -1,107 +1,123 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { profile } from "../data/portfolio";
-
-const navLinks = [
-  { label: "HOME", href: "#hero" },
-  { label: "ABOUT", href: "#about" },
-  { label: "SKILLS", href: "#skills" },
-  { label: "EXPERIENCE", href: "#experience" },
-  { label: "PROJECTS", href: "#projects" },
-  { label: "CERTS", href: "#certifications" },
-  { label: "CONTACT", href: "#contact" },
-];
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { IconMenu2, IconX } from '@tabler/icons-react';
+import { profile } from '../data/portfolio';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("HOME");
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const links = ['About', 'Skills', 'Experience', 'Projects', 'Contact'];
+
+  const scrollTo = (id) => {
+    setIsOpen(false);
+    const el = document.getElementById(id.toLowerCase());
+    if (el) {
+      window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#020912]/95 backdrop-blur-md border-b border-[#0f2545]" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="font-display text-sm font-bold">
-          <span className="text-[#00ff9f] glow-green">GC</span>
-          <span className="text-slate-400 mx-1">/</span>
-          <span className="text-slate-300">DEVOPS</span>
-        </div>
+    <>
+      <nav
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          scrolled ? 'glass py-3 shadow-lg' : 'bg-transparent py-5'
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-10 flex justify-between items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="text-xl font-heading font-bold cursor-pointer"
+            onClick={() => window.scrollTo(0, 0)}
+          >
+            <span className="grad-text">{profile.name.split(' ')[0]}</span>
+            <span className="text-white">.sh</span>
+          </motion.div>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setActive(link.label)}
-              className={`font-mono text-xs tracking-widest transition-all duration-200 ${
-                active === link.label
-                  ? "text-[#00ff9f] glow-green"
-                  : "text-slate-400 hover:text-[#00ff9f]"
-              }`}
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {links.map((link, i) => (
+              <motion.button
+                key={link}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ delay: i * 0.1 }}
+                onClick={() => scrollTo(link)}
+                className="text-sm font-medium text-muted hover:text-white transition-colors relative group"
+              >
+                {link}
+                <span className="absolute -bottom-1.5 left-0 w-0 h-0.5 bg-grad transition-all duration-300 group-hover:w-full rounded-full"></span>
+              </motion.button>
+            ))}
+            <motion.a
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ delay: 0.5 }}
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-grad text-sm py-2 px-5 rounded-full shadow-[0_0_20px_rgba(var(--color-primary),0.3)] hover:shadow-[0_0_25px_rgba(var(--color-secondary),0.5)] transition-all"
             >
-              {link.label}
-            </a>
-          ))}
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noreferrer"
-            className="px-3 py-1.5 font-mono text-xs border border-[#00ff9f]/40 text-[#00ff9f] rounded hover:bg-[#00ff9f]/10 transition-all duration-200 tracking-wider"
-          >
-            GITHUB
-          </a>
+              <span className="relative z-10 flex items-center gap-2">
+                Github
+              </span>
+            </motion.a>
+          </div>
+
+          {/* Mobile Toggle */}
+          <div className="md:hidden flex items-center gap-4">
+            <button 
+              className="text-white p-1"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
+            </button>
+          </div>
         </div>
+      </nav>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden text-[#00ff9f] font-mono text-lg"
-          onClick={() => setOpen(!open)}
-          type="button"
-          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={open}
-        >
-          {open ? "✕" : "☰"}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
-        {open && (
+        {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[#0a1628]/98 border-b border-[#0f2545]"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-xl pt-24 px-6 md:hidden"
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => { setActive(link.label); setOpen(false); }}
-                  className="font-mono text-xs tracking-widest text-slate-400 hover:text-[#00ff9f] transition-colors py-1"
+            <div className="flex flex-col gap-6">
+              {links.map((link) => (
+                <button
+                  key={link}
+                  onClick={() => scrollTo(link)}
+                  className="text-2xl font-heading font-medium text-left text-muted hover:text-white transition-colors border-b border-white/5 pb-4"
                 >
-                  {link.label}
-                </a>
+                  {link}
+                </button>
               ))}
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-grad text-center justify-center mt-4"
+              >
+                <span>Github Profile</span>
+              </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 }

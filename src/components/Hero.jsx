@@ -1,255 +1,199 @@
-import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
-import { profile } from "../data/portfolio";
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { TypeAnimation } from 'react-type-animation';
+import { IconBrandGithub, IconBrandLinkedin, IconMail, IconDownload } from '@tabler/icons-react';
+import { profile } from '../data/portfolio';
+import Magnetic from './Magnetic';
 
-const ROLES = [
-  "L2 DevOps Engineer",
-  "Linux Systems Engineer",
-  "VoIP Infrastructure Specialist",
-  "Cloud & Automation Engineer",
-  "RHCE Certified",
-];
-
-function useTyping(words, speed = 80, pause = 1800) {
-  const [wordIdx, setWordIdx] = useState(0);
-  const [charIdx, setCharIdx] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-  const timeout = useRef(null);
-  const current = words[wordIdx] ?? "";
-
-  useEffect(() => {
-    if (!deleting && charIdx < current.length) {
-      timeout.current = setTimeout(() => setCharIdx(c => c + 1), speed);
-    } else if (!deleting && charIdx === current.length) {
-      timeout.current = setTimeout(() => setDeleting(true), pause);
-    } else if (deleting && charIdx > 0) {
-      timeout.current = setTimeout(() => setCharIdx(c => c - 1), speed / 2);
-    } else if (deleting && charIdx === 0) {
-      timeout.current = setTimeout(() => {
-        setDeleting(false);
-        setWordIdx(i => (i + 1) % words.length);
-      }, speed);
-    }
-    return () => clearTimeout(timeout.current);
-  }, [charIdx, current.length, deleting, speed, pause, words.length]);
-
-  return current.slice(0, charIdx);
-}
-
-// Floating particle
-function Particle({ x, y, size, duration, delay }) {
+// Floating tech icons for background
+function FloatingShapes() {
   return (
-    <motion.div
-      className="absolute rounded-full bg-[#00ff9f] pointer-events-none"
-      style={{ left: `${x}%`, top: `${y}%`, width: size, height: size, opacity: 0.3 }}
-      animate={{ y: [0, -30, 0], opacity: [0.1, 0.4, 0.1] }}
-      transition={{ duration, delay, repeat: Infinity, ease: "easeInOut" }}
-    />
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50">
+      <motion.div 
+        animate={{ y: [0, -50, 0], rotate: [0, 15, 0], scale: [1, 1.2, 1] }} 
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-600/40 rounded-full blur-[100px] mix-blend-screen"
+      />
+      <motion.div 
+        animate={{ y: [0, 60, 0], x: [0, -40, 0], scale: [1, 1.1, 1] }} 
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-indigo-500/30 rounded-full blur-[120px] mix-blend-screen"
+      />
+    </div>
   );
 }
 
-// Stat widget
 function StatWidget() {
-  const [cpu, setCpu] = useState(42);
-  const [mem, setMem] = useState(67);
   const [uptime, setUptime] = useState(847392);
 
   useEffect(() => {
-    const t = setInterval(() => {
-      setCpu(v => Math.max(15, Math.min(95, v + (Math.random() - 0.5) * 8 | 0)));
-      setMem(v => Math.max(40, Math.min(90, v + (Math.random() - 0.5) * 4 | 0)));
-      setUptime(v => v + 1);
-    }, 1500);
+    const t = setInterval(() => setUptime(v => v + 1), 1000);
     return () => clearInterval(t);
   }, []);
 
   const fmtUptime = (s) => {
-    const d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60);
+    const d = Math.floor(s / 86400);
+    const h = Math.floor((s % 86400) / 3600);
+    const m = Math.floor((s % 3600) / 60);
     return `${d}d ${h}h ${m}m`;
   };
 
-  const bar = (val, color) => (
-    <div className="skill-bar flex-1">
-      <div className="skill-fill" style={{ width: `${val}%`, background: color }} />
-    </div>
-  );
-
   return (
     <motion.div
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 1.2, duration: 0.8 }}
-      className="glow-border corner-box bg-[#0a1628]/90 rounded-lg p-4 font-mono text-xs w-64"
+      drag
+      dragConstraints={{ left: -20, right: 20, top: -20, bottom: 20 }}
+      whileDrag={{ scale: 1.02, cursor: "grabbing" }}
+      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ delay: 0.4, duration: 0.6 }}
+      className="glass-lg p-6 relative overflow-hidden group cursor-grab"
     >
-      <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#0f2545]">
-        <span className="w-2 h-2 rounded-full bg-[#00ff9f] ping-slow inline-block" />
-        <span className="text-[#00ff9f] tracking-wider">SYSTEM STATUS</span>
-        <span className="ml-auto text-slate-500">LIVE</span>
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-3 h-3 rounded-full bg-emerald animate-pulse" />
+        <span className="font-mono text-sm text-muted">SYSTEM_STATUS: <span className="text-emerald">ONLINE</span></span>
       </div>
-      <div className="space-y-3">
+      
+      <div className="space-y-4">
         <div>
-          <div className="flex justify-between text-slate-400 mb-1">
-            <span>CPU LOAD</span>
-            <span style={{ color: cpu > 70 ? "#ff6b6b" : "#00ff9f" }}>{cpu}%</span>
+          <div className="flex justify-between font-mono text-xs mb-1.5">
+            <span className="text-muted">CPU_LOAD</span>
+            <span className="text-cyan">34%</span>
           </div>
-          {bar(cpu, cpu > 70 ? "linear-gradient(90deg,#ff6b6b,#ff4444)" : "linear-gradient(90deg,#00ff9f,#00d4ff)")}
+          <div className="h-1.5 w-full bg-surface rounded-full overflow-hidden">
+            <motion.div 
+              initial={{ width: 0 }} animate={{ width: '34%' }} 
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="h-full bg-gradient-to-r from-indigo to-cyan"
+            />
+          </div>
         </div>
         <div>
-          <div className="flex justify-between text-slate-400 mb-1">
-            <span>MEMORY</span>
-            <span className="text-[#00d4ff]">{mem}%</span>
+          <div className="flex justify-between font-mono text-xs mb-1.5">
+            <span className="text-muted">MEM_USAGE</span>
+            <span className="text-violet">68%</span>
           </div>
-          {bar(mem, "linear-gradient(90deg,#00d4ff,#7b2fff)")}
+          <div className="h-1.5 w-full bg-surface rounded-full overflow-hidden">
+            <motion.div 
+              initial={{ width: 0 }} animate={{ width: '68%' }} 
+              transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+              className="h-full bg-gradient-to-r from-violet to-indigo"
+            />
+          </div>
         </div>
-        <div className="flex justify-between text-slate-400">
-          <span>UPTIME</span>
-          <span className="text-[#00ff9f]">{fmtUptime(uptime)}</span>
-        </div>
-        <div className="flex justify-between text-slate-400">
-          <span>STATUS</span>
-          <span className="text-[#00ff9f]">● ONLINE</span>
-        </div>
-        <div className="flex justify-between text-slate-400">
-          <span>ENV</span>
-          <span className="text-slate-300">AlmaLinux 9.3</span>
+        <div className="pt-2 border-t border-border mt-4 flex justify-between items-center font-mono text-xs">
+          <span className="text-muted">UPTIME</span>
+          <span className="text-text">{fmtUptime(uptime)}</span>
         </div>
       </div>
     </motion.div>
   );
 }
 
-const PARTICLES = Array.from({ length: 20 }, (_, i) => ({
-  id: i,
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-  size: Math.random() * 3 + 1,
-  duration: Math.random() * 4 + 3,
-  delay: Math.random() * 3,
-}));
-
 export default function Hero() {
-  const typed = useTyping(ROLES);
-
   return (
-    <section id="hero" className="relative min-h-screen grid-bg flex items-center overflow-hidden scanlines">
-      {/* Particles */}
-      {PARTICLES.map(p => <Particle key={p.id} {...p} />)}
+    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-mesh">
+      <FloatingShapes />
+      
+      <div className="max-w-6xl mx-auto px-6 md:px-10 w-full grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center z-10">
+        
+        {/* Left Col: Text */}
+        <div className="space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="badge bg-indigo/10 text-indigo border border-indigo/20 mb-4 inline-flex items-center min-w-[160px]">
+              <TypeAnimation
+                sequence={[
+                  'Linux Engineer', 2000,
+                  'VoIP Engineer', 2000,
+                  'Cloud Engineer', 2000,
+                  'Automation Engineer', 2000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+              />
+            </span>
+            <h1 className="text-5xl md:text-7xl font-bold font-heading leading-tight tracking-tight mt-2 mb-4">
+              Hi, I'm <br />
+              <span className="grad-text pb-2">{profile.name.split(' ')[0]}</span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted max-w-xl leading-relaxed">
+              {profile.role} specializing in building scalable Linux infrastructure, automating deployments, and maintaining robust enterprise systems.
+            </p>
+          </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-16 w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-
-          {/* Left: Text content */}
-          <div className="flex-1">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="font-mono text-[#00ff9f] text-sm tracking-widest mb-4"
-            >
-              <span className="text-slate-500">$ </span>whoami
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="font-display text-5xl sm:text-6xl lg:text-7xl font-black mb-2 leading-none"
-            >
-              <span className="text-white">GANESH</span>
-              <br />
-              <span className="gradient-text">CHOUDHARY</span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="font-mono text-lg sm:text-xl text-[#00d4ff] mb-6 h-8"
-            >
-              <span className="cursor">{typed}</span>
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0 }}
-              className="text-slate-400 max-w-lg text-base leading-relaxed mb-8"
-            >
-              {profile.bio}
-            </motion.p>
-
-            {/* Tags */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.1 }}
-              className="flex flex-wrap gap-2 mb-8"
-            >
-              {["RHCE", "RHCSA", "OCI", "AWS", "Asterisk", "VICIdial", "AlmaLinux"].map(tag => (
-                <span key={tag} className="font-mono text-xs px-3 py-1 border border-[#00ff9f]/30 text-[#00ff9f] rounded-sm bg-[#00ff9f]/5">
-                  {tag}
-                </span>
-              ))}
-            </motion.div>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
-              className="flex flex-wrap gap-4"
-            >
-              <a
-                href="#contact"
-                className="px-6 py-3 font-mono text-sm font-semibold bg-[#00ff9f] text-[#020912] rounded hover:bg-[#00d4ff] transition-all duration-200 tracking-widest"
-              >
-                HIRE ME
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-wrap items-center gap-4"
+          >
+            <Magnetic>
+              <button onClick={() => document.getElementById('projects').scrollIntoView({behavior: 'smooth'})} className="btn-grad">
+                <span>View Projects</span>
+              </button>
+            </Magnetic>
+            <Magnetic>
+              <a href="mailto:ganesh928k@gmail.com" className="btn-outline">
+                <IconMail size={20} />
+                Contact Me
               </a>
-              <a
-                href="#projects"
-                className="px-6 py-3 font-mono text-sm glow-border text-[#00ff9f] rounded hover:bg-[#00ff9f]/10 transition-all duration-200 tracking-widest"
-              >
-                VIEW WORK
-              </a>
-              <a
-                href={profile.github}
-                target="_blank"
-                rel="noreferrer"
-                className="px-6 py-3 font-mono text-sm border border-[#0f2545] text-slate-400 rounded hover:border-[#00d4ff] hover:text-[#00d4ff] transition-all duration-200 tracking-widest"
-              >
-                GITHUB ↗
-              </a>
-            </motion.div>
-          </div>
+            </Magnetic>
+          </motion.div>
 
-          {/* Right: Stats widget */}
-          <div className="flex flex-col gap-4 items-center lg:items-end">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex items-center gap-5 pt-4"
+          >
+            <Magnetic>
+              <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub Profile" className="text-muted hover:text-white transition-colors p-2 hover:bg-surface rounded-full">
+                <IconBrandGithub size={24} />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn Profile" className="text-muted hover:text-cyan transition-colors p-2 hover:bg-surface rounded-full">
+                <IconBrandLinkedin size={24} />
+              </a>
+            </Magnetic>
+            <div className="h-px w-12 bg-border"></div>
+            <span className="text-sm font-mono text-muted">ganesh928k@gmail.com</span>
+          </motion.div>
+        </div>
+
+        {/* Right Col: Visuals */}
+        <div className="relative hidden md:block">
+          {/* Main profile glow behind */}
+          <div className="absolute inset-0 bg-grad blur-[100px] opacity-20 rounded-full" />
+          
+          <div className="relative z-10 flex flex-col gap-6">
             <StatWidget />
+            
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.6 }}
-              className="font-mono text-xs text-slate-500 text-center"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="glass p-5 flex items-center justify-between group cursor-pointer w-[80%] ml-auto"
+              onClick={() => window.open(profile.linkedin, '_blank')}
             >
-              📍 {profile.location}
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-indigo/20 flex items-center justify-center text-indigo">
+                  <IconBrandLinkedin size={20} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-white group-hover:text-cyan transition-colors">Connect on LinkedIn</h4>
+                  <p className="text-xs text-muted font-mono">{profile.role}</p>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Scroll hint */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
-        >
-          <span className="font-mono text-xs text-slate-600 tracking-widest">SCROLL</span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-px h-8 bg-gradient-to-b from-[#00ff9f] to-transparent"
-          />
-        </motion.div>
       </div>
     </section>
   );

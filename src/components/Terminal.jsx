@@ -1,188 +1,121 @@
-import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { profile } from "../data/portfolio";
+import { useState, useRef, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 const COMMANDS = {
-  whoami: () => ["ganesh_choudhary", `${profile.role} @ Avyukta Intellicall`],
-  help: () => [
-    "Available commands:",
-    "  whoami       — show identity",
-    "  skills       — list tech skills",
-    "  certs        — show certifications",
-    "  experience   — work history",
-    "  contact      — get in touch",
-    "  clear        — clear terminal",
-    "  uptime       — system uptime",
-    "  uname        — system info",
-    "  ls projects  — list projects",
-  ],
-  skills: () => [
-    "LINUX: CentOS, RHEL, AlmaLinux, Ubuntu, openSUSE",
-    "VOIP:  Asterisk, VICIdial, SIP, PRI, GSM Gateway",
-    "CLOUD: Oracle OCI, AWS Foundations",
-    "WEB:   Apache, Nginx",
-    "DB:    MySQL, MariaDB",
-    "NET:   Firewall, Router, Switch config",
-    "AUTO:  Bash scripting, Shell automation",
-    "MON:   Log analysis, System monitoring",
-  ],
-  certs: () => [
-    "✓ Red Hat Certified Engineer (RHCE)",
-    "✓ Red Hat Certified System Administrator (RHCSA)",
-    "✓ Oracle Cloud Foundations Associate (OCI)",
-    "✓ Amazon Cloud Foundations (AWS)",
-  ],
-  experience: () => [
-    "Avyukta Intellicall | Jan 2023 – Present",
-    "  Role: L2 DevOps Engineer (promoted 2024)",
-    "  Prev: Linux System & VoIP Engineer",
-    "  Stack: Asterisk · VICIdial · RHEL · Bash · OCI",
-  ],
-  contact: () => [
-    `Email:    ${profile.email}`,
-    `Phone:    ${profile.phone}`,
-    "LinkedIn: linkedin.com/in/ganesh928",
-    `GitHub:   github.com/${profile.githubUser}`,
-    `Location: ${profile.location}`,
-  ],
-  uptime: () => {
-    const s = 847392 + Math.floor(Date.now() / 1000) % 1000;
-    const d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60);
-    return [`up ${d} days, ${h} hours, ${m} minutes, load average: 0.42 0.38 0.31`];
-  },
-  uname: () => ["Linux ganesh-server 5.14.0-284.30.1.el9 #1 SMP AlmaLinux 9.3 x86_64 GNU/Linux"],
-  "ls projects": () => [
-    "drwxr-xr-x  linux-from-scratch/",
-    "drwxr-xr-x  vicidial-cluster/",
-    "drwxr-xr-x  sip-automation-suite/",
-    "drwxr-xr-x  monitoring-sop-system/",
-    "drwxr-xr-x  oci-migration-blueprint/",
-    "drwxr-xr-x  firewall-hardening-fw/",
-  ],
+  help: 'Available commands: whoami, skills, clear, sudo',
+  whoami: 'Ganesh Choudhary - L2 DevOps Engineer\nLocation: Jaipur, India',
+  skills: 'Linux, VoIP, AWS, OCI, Bash, Asterisk, VICIdial, Nginx',
+  sudo: 'Access denied. This incident will be reported.',
+};
+
+const Typewriter = ({ text, onComplete }) => {
+  const [displayedText, setDisplayedText] = useState('');
+  
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(text.substring(0, i + 1));
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        if (onComplete) onComplete();
+      }
+    }, 20); // typing speed
+    return () => clearInterval(interval);
+  }, [text, onComplete]);
+
+  return <span className="whitespace-pre-wrap">{displayedText}</span>;
 };
 
 export default function Terminal() {
   const [history, setHistory] = useState([
-    { type: "system", text: "Welcome to Ganesh's Portfolio Terminal v1.0.0" },
-    { type: "system", text: 'Type "help" to see available commands.' },
+    { type: 'output', text: 'Welcome to gc-portfolio terminal v2.0.0', isTyping: false },
+    { type: 'output', text: 'Type "help" for available commands.', isTyping: false }
   ]);
-  const [input, setInput] = useState("");
-  const [cmdHistory, setCmdHistory] = useState([]);
-  const [histIdx, setHistIdx] = useState(-1);
+  const [input, setInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const bottomRef = useRef(null);
-  const inputRef = useRef(null);
+  
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [history]);
-
-  const run = (cmd) => {
-    const trimmed = cmd.trim().toLowerCase();
-    const newHistory = [...history, { type: "input", text: `$ ${cmd}` }];
-
-    if (trimmed === "clear") {
-      setHistory([{ type: "system", text: 'Terminal cleared. Type "help" for commands.' }]);
-    } else if (COMMANDS[trimmed]) {
-      const output = COMMANDS[trimmed]();
-      setHistory([...newHistory, ...output.map(t => ({ type: "output", text: t }))]);
-    } else if (trimmed === "") {
-      setHistory([...newHistory]);
-    } else {
-      setHistory([...newHistory, {
-        type: "error",
-        text: `bash: ${cmd}: command not found. Type "help" for available commands.`
-      }]);
+  const handleCommand = (e) => {
+    if (e.key === 'Enter' && !isTyping) {
+      const cmd = input.trim().toLowerCase();
+      const newHistory = [...history, { type: 'input', text: `guest@gc-portfolio:~$ ${cmd}` }];
+      
+      if (cmd === 'clear') {
+        setHistory([]);
+      } else if (cmd === '') {
+        setHistory(newHistory);
+      } else if (COMMANDS[cmd]) {
+        setIsTyping(true);
+        newHistory.push({ type: 'output', text: COMMANDS[cmd], isTyping: true });
+        setHistory(newHistory);
+      } else {
+        setIsTyping(true);
+        newHistory.push({ type: 'error', text: `bash: ${cmd}: command not found`, isTyping: true });
+        setHistory(newHistory);
+      }
+      
+      setInput('');
+      setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
     }
-
-    setCmdHistory(h => [cmd, ...h].slice(0, 50));
-    setHistIdx(-1);
-    setInput("");
   };
 
-  const onKey = (e) => {
-    if (e.key === "Enter") { run(input); }
-    else if (e.key === "ArrowUp") {
-      const idx = Math.min(histIdx + 1, cmdHistory.length - 1);
-      setHistIdx(idx);
-      setInput(cmdHistory[idx] || "");
-      e.preventDefault();
-    }
-    else if (e.key === "ArrowDown") {
-      const idx = Math.max(histIdx - 1, -1);
-      setHistIdx(idx);
-      setInput(idx === -1 ? "" : cmdHistory[idx]);
-      e.preventDefault();
-    }
+  const handleTypingComplete = (index) => {
+    setIsTyping(false);
+    setHistory(prev => prev.map((item, i) => i === index ? { ...item, isTyping: false } : item));
+    setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
   };
 
   return (
-    <section id="terminal" className="py-20 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-4 relative z-10" ref={ref}>
+      <div className="max-w-5xl mx-auto px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
+          className="rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-[#0A0E17] hover:shadow-[0_0_40px_rgba(6,182,212,0.15)] transition-shadow duration-500"
         >
-          {/* Terminal window */}
-          <div className="glow-border rounded-lg overflow-hidden bg-[#0a1628]">
-            {/* Title bar */}
-            <div className="flex items-center gap-2 px-4 py-3 bg-[#0f2545]/80 border-b border-[#0f2545]">
-              <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-              <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-              <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
-              <span className="font-mono text-xs text-slate-400 ml-3">ganesh@portfolio:~$</span>
-              <span className="ml-auto font-mono text-xs text-[#00ff9f]">● ACTIVE</span>
+          {/* Terminal Window Chrome */}
+          <div className="bg-[#1C212B] px-4 py-3 flex items-center border-b border-white/5">
+            <div className="flex gap-2">
+              <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
+              <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+              <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
             </div>
-
-            {/* Output area */}
-            <div
-              className="p-4 h-72 overflow-y-auto font-mono text-sm cursor-text"
-              onClick={() => inputRef.current?.focus()}
-            >
-              {history.map((line, i) => (
-                <div
-                  key={i}
-                  className={`leading-6 ${
-                    line.type === "input" ? "text-[#00d4ff]"
-                    : line.type === "error" ? "text-[#ff6b6b]"
-                    : line.type === "system" ? "text-[#7b2fff]"
-                    : "text-[#00ff9f]"
-                  }`}
-                >
-                  {line.text}
-                </div>
-              ))}
-              <div ref={bottomRef} />
-            </div>
-
-            {/* Input row */}
-            <div className="flex items-center gap-2 px-4 py-3 border-t border-[#0f2545] bg-[#020912]/50">
-              <span className="font-mono text-xs text-[#00ff9f] flex-shrink-0">ganesh@portfolio:~$</span>
-              <input
-                ref={inputRef}
-                value={input}
-                onChange={e => setInput(e.target.value)}
-                onKeyDown={onKey}
-                className="min-w-0 flex-1 bg-transparent outline-none font-mono text-sm text-white caret-[#00ff9f]"
-                placeholder="type a command..."
-                autoComplete="off"
-                spellCheck={false}
-              />
+            <div className="flex-1 text-center font-mono text-xs text-muted/70 flex items-center justify-center gap-2">
+              <span className="text-cyan">~</span> /home/guest
             </div>
           </div>
 
-          {/* Quick commands */}
-          <div className="flex flex-wrap gap-2 mt-4 justify-center">
-            {["help", "skills", "certs", "experience", "contact", "ls projects"].map(cmd => (
-              <button
-                key={cmd}
-                onClick={() => run(cmd)}
-                className="font-mono text-xs px-3 py-1.5 border border-[#0f2545] text-slate-400 rounded hover:border-[#00ff9f]/50 hover:text-[#00ff9f] transition-all duration-200"
-              >
-                {cmd}
-              </button>
+          {/* Terminal Content */}
+          <div className="p-6 font-mono text-sm h-80 overflow-y-auto" onClick={() => document.getElementById('term-input')?.focus()}>
+            {history.map((line, i) => (
+              <div key={i} className={`mb-2 ${line.type === 'error' ? 'text-rose' : 'text-slate-300'}`}>
+                {line.type === 'input' ? (
+                  <span dangerouslySetInnerHTML={{ __html: line.text.replace('guest@gc-portfolio:~$', '<span class="text-emerald">guest@gc-portfolio</span><span class="text-white">:</span><span class="text-cyan">~</span><span class="text-white">$</span>') }} />
+                ) : (
+                  line.isTyping ? <Typewriter text={line.text} onComplete={() => handleTypingComplete(i)} /> : <span className="whitespace-pre-wrap">{line.text}</span>
+                )}
+              </div>
             ))}
+            
+            <div className={`flex items-center text-slate-300 ${isTyping ? 'opacity-50 pointer-events-none' : ''}`}>
+              <span className="text-emerald">guest@gc-portfolio</span><span className="text-white">:</span><span className="text-cyan">~</span><span className="text-white mr-2">$</span>
+              <input
+                id="term-input"
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleCommand}
+                className="bg-transparent border-none outline-none focus:outline-none focus-visible:outline-none flex-1 text-slate-300 font-mono"
+                autoComplete="off"
+                spellCheck="false"
+              />
+            </div>
+            <div ref={bottomRef} />
           </div>
         </motion.div>
       </div>

@@ -1,97 +1,78 @@
-import { motion } from "framer-motion";
-import { profile, projects } from "../data/portfolio";
+import { motion } from 'framer-motion';
+import { projects } from '../data/portfolio';
+import { IconBrandGithub, IconExternalLink, IconFolder } from '@tabler/icons-react';
+import TiltCard from './TiltCard';
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 bg-[#050e1f]/50">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="font-mono text-[#00ff9f] text-xs tracking-widest mb-2">
-            <span className="text-slate-500">$ </span>ls projects/
+    <section id="projects" className="py-24 relative z-10 bg-bg2/50 border-y border-white/5">
+      <div className="max-w-6xl mx-auto px-6 md:px-10">
+        
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <span className="section-label">04. Work</span>
+            <h2 className="section-title mt-4">Featured Projects</h2>
           </div>
-          <h2 className="font-display text-4xl font-bold text-white">
-            INFRA <span className="gradient-text">PROJECTS</span>
-          </h2>
-        </motion.div>
+          <a href="https://github.com/ganesh928k" target="_blank" rel="noreferrer" className="text-indigo hover:text-cyan transition-colors flex items-center gap-2 font-mono text-sm group">
+            View all on GitHub 
+            <IconBrandGithub size={18} className="group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((project, i) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8" style={{ perspective: "1000px" }}>
+          {projects.map((project, idx) => (
             <motion.div
-              key={project.title}
+              key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="glow-border corner-box bg-[#0a1628] rounded-lg p-5 group hover:translate-y-[-4px] transition-transform duration-300"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.1 }}
+              className="h-full"
             >
-              {/* Header */}
-              <div className="flex items-start justify-between mb-3">
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center text-xl"
-                  style={{ background: `${project.color}15`, border: `1px solid ${project.color}30` }}
-                >
-                  {project.icon}
+              <TiltCard className="h-full">
+                <div className="glass p-8 flex flex-col h-full group hover:-translate-y-2 hover:border-indigo/40 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4),0_0_40px_rgba(var(--color-primary),0.1)] transition-all duration-300 relative overflow-hidden bg-bg/80">
+                  {/* Subtle hover gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="flex justify-between items-start mb-6 relative z-10">
+                    <div className="w-12 h-12 rounded-xl bg-surface-2 border border-border flex items-center justify-center text-indigo group-hover:text-cyan transition-colors">
+                      <IconFolder size={24} />
+                    </div>
+                    <div className="flex gap-3 text-muted">
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noreferrer" aria-label={`View ${project.title} on GitHub`} className="hover:text-white transition-colors">
+                          <IconBrandGithub size={22} />
+                        </a>
+                      )}
+                      {project.link && (
+                        <a href={project.link} target="_blank" rel="noreferrer" aria-label={`Visit ${project.title} live site`} className="hover:text-cyan transition-colors">
+                          <IconExternalLink size={22} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex-1 relative z-10">
+                    <h3 className="text-2xl font-heading font-semibold text-white mb-3 group-hover:text-indigo transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-muted leading-relaxed text-sm mb-6">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mt-auto relative z-10 pt-6 border-t border-border group-hover:border-indigo/20 transition-colors">
+                    {project.tech.map((tech, i) => (
+                      <span key={i} className="text-xs font-mono text-cyan bg-cyan/10 px-2.5 py-1 rounded-md">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <span
-                  className="font-mono text-xs px-2 py-0.5 rounded"
-                  style={{ color: project.color, background: `${project.color}15`, border: `1px solid ${project.color}30` }}
-                >
-                  {project.highlight}
-                </span>
-              </div>
-
-              {/* Title */}
-              <h3 className="font-display text-sm font-bold text-white mb-2 group-hover:text-[#00ff9f] transition-colors">
-                {project.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-slate-400 text-xs leading-relaxed mb-4">
-                {project.desc}
-              </p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5">
-                {project.tags.map(tag => (
-                  <span
-                    key={tag}
-                    className="font-mono text-xs px-2 py-0.5 bg-[#0f2545] text-slate-400 rounded-sm"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Bottom line */}
-              <div
-                className="mt-4 h-px w-0 group-hover:w-full transition-all duration-500"
-                style={{ background: `linear-gradient(90deg, ${project.color}, transparent)` }}
-              />
+              </TiltCard>
             </motion.div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-10"
-        >
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-xs glow-border px-6 py-3 text-[#00ff9f] rounded hover:bg-[#00ff9f]/10 transition-all duration-200 tracking-widest"
-          >
-            VIEW MORE ON GITHUB ↗
-          </a>
-        </motion.div>
       </div>
     </section>
   );

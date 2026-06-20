@@ -1,47 +1,53 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
-      colors: {
-        cyber: {
-          green: '#00ff9f',
-          blue: '#00d4ff',
-          purple: '#7b2fff',
-          dark: '#020912',
-          card: '#0a1628',
-          border: '#0f2545',
-        }
-      },
       fontFamily: {
-        mono: ['"JetBrains Mono"', 'monospace'],
-        display: ['"Orbitron"', 'sans-serif'],
-        body: ['"Exo 2"', 'sans-serif'],
+        sans:    ['Inter', 'ui-sans-serif', 'system-ui'],
+        heading: ['Space Grotesk', 'Inter', 'sans-serif'],
+        mono:    ['JetBrains Mono', 'ui-monospace', 'monospace'],
+      },
+      colors: {
+        bg:      'var(--bg)',
+        bg2:     'var(--bg-2)',
+        text:    'var(--text)',
+        muted:   'var(--muted)',
+        surface: 'var(--surface)',
+        border:  'var(--border)',
+        indigo:  'rgb(var(--color-primary) / <alpha-value>)',
+        cyan:    'rgb(var(--color-secondary) / <alpha-value>)',
+        violet:  '#8b5cf6',
+        emerald: '#10b981',
+        rose:    '#f43f5e',
+        amber:   '#f59e0b',
+      },
+      backgroundImage: {
+        'grad':        'var(--grad)',
+        'grad-rev':    'var(--grad-rev)',
+        'grad-violet': 'linear-gradient(135deg, #8b5cf6, rgb(var(--color-primary)))',
+        'mesh':        'radial-gradient(ellipse 80% 60% at 20% 10%, rgba(var(--color-primary), 0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(var(--color-secondary), 0.10) 0%, transparent 60%)',
       },
       animation: {
-        'glow-pulse': 'glowPulse 2s ease-in-out infinite',
-        'scan': 'scan 3s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'flicker': 'flicker 0.15s infinite linear',
+        'float':       'float 4s ease-in-out infinite',
+        'float-slow':  'float 6s ease-in-out infinite',
+        'pulse-ring':  'pulse-ring 3s ease-in-out infinite',
+        'shimmer':     'shimmer 2.5s linear infinite',
       },
       keyframes: {
-        glowPulse: {
-          '0%, 100%': { boxShadow: '0 0 5px #00ff9f, 0 0 10px #00ff9f' },
-          '50%': { boxShadow: '0 0 20px #00ff9f, 0 0 40px #00ff9f, 0 0 60px #00ff9f' },
-        },
-        scan: {
-          '0%': { transform: 'translateY(-100%)' },
-          '100%': { transform: 'translateY(100vh)' },
-        },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%':      { transform: 'translateY(-12px)' },
         },
-        flicker: {
-          '0%, 100%': { opacity: 1 },
-          '50%': { opacity: 0.8 },
-        }
-      }
+        'pulse-ring': {
+          '0%, 100%': { boxShadow: '0 0 0 4px rgba(99,102,241,0.2)' },
+          '50%':      { boxShadow: '0 0 0 8px rgba(6,182,212,0.15)' },
+        },
+        shimmer: {
+          '0%':   { backgroundPosition: '-200% center' },
+          '100%': { backgroundPosition: '200% center' },
+        },
+      },
     },
   },
   plugins: [],
