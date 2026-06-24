@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { IconBrandGithub, IconBrandLinkedin, IconMail, IconDownload, IconTerminal2 } from '@tabler/icons-react';
+import { IconBrandGithub, IconBrandLinkedin, IconMail, IconDownload } from '@tabler/icons-react';
 import { profile } from '../data/portfolio';
 import Magnetic from './Magnetic';
 

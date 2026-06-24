@@ -57,11 +57,6 @@ nav, canvas {
   will-change: transform;
 }
 
-/* Sections below the fold: skip rendering until near viewport */
-section {
-  contain: layout style;
-}
-
 /* ── Custom Scrollbar ──────────────────────────────────── */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
