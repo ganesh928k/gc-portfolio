@@ -5,7 +5,7 @@ import TiltCard from './TiltCard';
 
 export default function Certifications() {
   return (
-    <section className="py-24 relative z-10">
+    <section id="certifications" className="py-24 relative z-10">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         
         <div className="text-center mb-16">

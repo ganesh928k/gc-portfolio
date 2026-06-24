@@ -12,3 +12,4 @@ yarn-error.log*
 dist-ssr
 *.tsbuildinfo
 *.pid
+AI_HANDOVER.md

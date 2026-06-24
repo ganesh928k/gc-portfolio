@@ -47,6 +47,19 @@ body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  /* Prevent layout shifts during scroll */
+  overscroll-behavior: none;
+}
+
+/* ── Scroll performance ─────────────────────────────────── */
+/* Push fixed/sticky elements onto their own GPU layer */
+nav, canvas {
+  will-change: transform;
+}
+
+/* Sections below the fold: skip rendering until near viewport */
+section {
+  contain: layout style;
 }
 
 /* ── Custom Scrollbar ──────────────────────────────────── */

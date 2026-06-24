@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { IconBrandGithub, IconBrandLinkedin, IconMail, IconDownload } from '@tabler/icons-react';
+import { IconBrandGithub, IconBrandLinkedin, IconMail, IconDownload, IconTerminal2 } from '@tabler/icons-react';
 import { profile } from '../data/portfolio';
 import Magnetic from './Magnetic';
 
@@ -20,6 +20,65 @@ function FloatingShapes() {
         className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-indigo-500/30 rounded-full blur-[120px] mix-blend-screen"
       />
     </div>
+  );
+}
+
+// Pulsing "Available for Work" badge
+function AvailableBadge() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.2 }}
+      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald/30 bg-emerald/5 mb-3"
+    >
+      <span className="relative flex h-2 w-2">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald opacity-75" />
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald" />
+      </span>
+      <span className="text-xs font-mono font-medium text-emerald tracking-wide">Available for Opportunities</span>
+    </motion.div>
+  );
+}
+
+// Profile Avatar with animated gradient ring
+function ProfileAvatar() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.3, duration: 0.6 }}
+      className="relative mx-auto mb-6 flex items-center justify-center"
+      style={{ width: 160, height: 160 }}
+    >
+      {/* Spinning gradient ring */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+        className="absolute inset-0 rounded-full"
+        style={{
+          background: 'conic-gradient(from 0deg, #3b82f6, #6366f1, #06b6d4, #3b82f6)',
+          padding: 3,
+        }}
+      >
+        <div className="w-full h-full rounded-full" style={{ background: '#050810' }} />
+      </motion.div>
+      {/* Inner pulse ring */}
+      <div className="absolute inset-1 rounded-full animate-pulse-ring opacity-40" />
+      {/* Avatar initials fallback */}
+      <div className="relative z-10 w-[140px] h-[140px] rounded-full bg-gradient-to-br from-indigo/20 to-cyan/10 border border-white/10 flex items-center justify-center overflow-hidden">
+        {profile.avatarUrl ? (
+          <img src={profile.avatarUrl} alt={profile.name} className="w-full h-full object-cover" />
+        ) : (
+          <div className="text-center">
+            <div className="text-4xl font-heading font-bold grad-text">
+              {profile.name.split(' ').map(n => n[0]).join('')}
+            </div>
+            <div className="text-xs font-mono text-muted mt-1">DevOps</div>
+          </div>
+        )}
+      </div>
+    </motion.div>
   );
 }
 
@@ -104,6 +163,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
+            <AvailableBadge />
             <span className="badge bg-indigo/10 text-indigo border border-indigo/20 mb-4 inline-flex items-center min-w-[160px]">
               <TypeAnimation
                 sequence={[
@@ -143,6 +203,12 @@ export default function Hero() {
                 Contact Me
               </a>
             </Magnetic>
+            <Magnetic>
+              <a href="/Ganesh_Resume.pdf" download className="btn-outline">
+                <IconDownload size={20} />
+                Download CV
+              </a>
+            </Magnetic>
           </motion.div>
 
           <motion.div
@@ -172,18 +238,19 @@ export default function Hero() {
           <div className="absolute inset-0 bg-grad blur-[100px] opacity-20 rounded-full" />
           
           <div className="relative z-10 flex flex-col gap-6">
+            <ProfileAvatar />
             <StatWidget />
             
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="glass p-5 flex items-center justify-between group cursor-pointer w-[80%] ml-auto"
+              className="glass p-4 flex items-center justify-between group cursor-pointer w-[85%] ml-auto"
               onClick={() => window.open(profile.linkedin, '_blank')}
             >
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-indigo/20 flex items-center justify-center text-indigo">
-                  <IconBrandLinkedin size={20} />
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-indigo/20 flex items-center justify-center text-indigo">
+                  <IconBrandLinkedin size={18} />
                 </div>
                 <div>
                   <h4 className="text-sm font-medium text-white group-hover:text-cyan transition-colors">Connect on LinkedIn</h4>
@@ -191,6 +258,25 @@ export default function Hero() {
                 </div>
               </div>
             </motion.div>
+
+            {/* GitHub quick-link chip */}
+            <motion.a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="glass p-4 flex items-center gap-3 group cursor-pointer w-[70%] hover:border-indigo/30 transition-all duration-300"
+            >
+              <div className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-muted group-hover:text-white transition-colors">
+                <IconBrandGithub size={18} />
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-white">@{profile.githubUser}</h4>
+                <p className="text-xs text-muted font-mono">github.com</p>
+              </div>
+            </motion.a>
           </div>
         </div>
 

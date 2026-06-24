@@ -2,10 +2,14 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const COMMANDS = {
-  help: 'Available commands: whoami, skills, clear, sudo',
-  whoami: 'Ganesh Choudhary - L2 DevOps Engineer\nLocation: Jaipur, India',
-  skills: 'Linux, VoIP, AWS, OCI, Bash, Asterisk, VICIdial, Nginx',
-  sudo: 'Access denied. This incident will be reported.',
+  help:       'Available commands: whoami, skills, experience, certs, contact, uptime, clear',
+  whoami:     'Ganesh Choudhary\nRole    : L2 DevOps & Linux Systems Engineer\nLocation: Jaipur, Rajasthan, India\nStatus  : ● Available for Opportunities',
+  skills:     'Linux     : CentOS / AlmaLinux / Ubuntu / RHEL [95%]\nVoIP      : Asterisk PBX / VICIdial / SIP / PRI  [92%]\nCloud     : Oracle OCI / AWS Solutions Architect  [80%]\nScripting : Bash / Shell Automation               [90%]\nDatabase  : MySQL / MariaDB                       [85%]\nNetworking: Firewall / Routing / Packet Analysis  [85%]',
+  experience: 'Avyukta Intellicall — L2 DevOps Engineer (2024–Present)\n  ↳ Promoted: Leading infra upgrades & CI/CD improvements\n\nAvyukta Intellicall — Linux & VoIP Engineer (2023–2024)\n  ↳ PBX/Asterisk, SIP routing, system hardening\n\nAvyukta Intellicall — L1 Support Intern (2023)\n  ↳ Foundational IT support & server monitoring',
+  certs:      '✓ RHCSA — Red Hat Certified System Administrator (2023)\n✓ RHCE  — Red Hat Certified Engineer (2024)\n✓ AWS   — Architecting Solutions on AWS (April 2026)\n✓ OCI   — Oracle Cloud Infrastructure Foundations (2023)',
+  contact:    'Email   : ganesh928k@gmail.com\nPhone   : +91-8696383333\nLinkedIn: linkedin.com/in/ganesh928k\nGitHub  : github.com/ganesh928k',
+  uptime:     'System uptime: 9d 14h 22m\nServices: asterisk ● | nginx ● | mysqld ● | sshd ●\nLoad avg: 0.42, 0.38, 0.31',
+  sudo:       '[sudo] password for guest: \nSorry, try again.\n[sudo] password for guest: \nSorry, user guest is not in the sudoers file. This incident will be reported.',
 };
 
 const Typewriter = ({ text, onComplete }) => {

@@ -8,14 +8,21 @@ export default function ParticleMesh() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     
+    // Cap pixel ratio at 1 to reduce GPU workload and prevent scroll jitter
+    const dpr = Math.min(window.devicePixelRatio || 1, 1);
     let width = window.innerWidth;
     let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.scale(dpr, dpr);
 
     let particles = [];
-    // Lower density to allow drawing network lines without crashing the browser
-    const numParticles = 300; 
+    const isMobile = width < 768;
+    // Reduce particles on mobile for better performance
+    const numParticles = isMobile ? 60 : 300;
+    const connectionThreshold = isMobile ? 8000 : 15000;
     
     // Exact Antigravity color palette
     const colors = ["#e11d48", "#3b82f6", "#8b5cf6", "#06b6d4", "#f8fafc"];
@@ -85,9 +92,9 @@ export default function ParticleMesh() {
           p.y += (p.baseY - p.y) * 0.05;
         }
 
-        // Add a very subtle continuous drift / float
-        p.baseX += Math.sin(Date.now() / 2000 + i) * 0.3;
-        p.baseY += Math.cos(Date.now() / 2000 + i) * 0.3;
+        // Very subtle drift — kept minimal to reduce per-frame work
+        p.baseX += Math.sin(Date.now() / 4000 + i) * 0.15;
+        p.baseY += Math.cos(Date.now() / 4000 + i) * 0.15;
 
         // Render dot
         ctx.beginPath();
@@ -95,21 +102,23 @@ export default function ParticleMesh() {
         ctx.fillStyle = p.color;
         ctx.fill();
 
-        // Render network lines (the "Net")
-        for (let j = i + 1; j < particles.length; j++) {
-          let p2 = particles[j];
-          let dLineX = p.x - p2.x;
-          let dLineY = p.y - p2.y;
-          let distLineSq = dLineX * dLineX + dLineY * dLineY;
-          
-          if (distLineSq < 15000) { // Connect dots closer than ~120px
-            let opacity = 0.15 * (1 - distLineSq / 15000);
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(139, 92, 246, ${opacity})`; // Violet glow lines
-            ctx.lineWidth = 1;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
+        // Render network lines (skip on mobile for performance)
+        if (!isMobile) {
+          for (let j = i + 1; j < particles.length; j++) {
+            let p2 = particles[j];
+            let dLineX = p.x - p2.x;
+            let dLineY = p.y - p2.y;
+            let distLineSq = dLineX * dLineX + dLineY * dLineY;
+            
+            if (distLineSq < connectionThreshold) {
+              let opacity = 0.15 * (1 - distLineSq / connectionThreshold);
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(139, 92, 246, ${opacity})`;
+              ctx.lineWidth = 1;
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
           }
         }
       }
@@ -123,9 +132,12 @@ export default function ParticleMesh() {
     const handleResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-      initParticles(); // Re-center the globe
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.scale(dpr, dpr);
+      initParticles();
     };
 
     window.addEventListener('resize', handleResize);
@@ -142,6 +154,7 @@ export default function ParticleMesh() {
     <canvas 
       ref={canvasRef} 
       className="fixed inset-0 z-0 pointer-events-none opacity-60"
+      style={{ willChange: 'transform', transform: 'translateZ(0)' }}
     />
   );
 }

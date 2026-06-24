@@ -16,7 +16,7 @@ export default function About() {
           <h2 className="section-title mt-4">About Me</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -40,6 +40,25 @@ export default function About() {
                 <p className="text-3xl font-heading font-bold text-white mb-1">20+</p>
                 <p className="text-sm font-mono text-muted uppercase">Servers Managed</p>
               </div>
+              <div className="border-l-2 border-violet/30 pl-4">
+                <p className="text-3xl font-heading font-bold text-white mb-1">50+</p>
+                <p className="text-sm font-mono text-muted uppercase">VoIP Deployments</p>
+              </div>
+              <div className="border-l-2 border-emerald/30 pl-4">
+                <p className="text-3xl font-heading font-bold text-white mb-1">4</p>
+                <p className="text-sm font-mono text-muted uppercase">Certifications</p>
+              </div>
+            </div>
+
+            {/* GitHub Stats */}
+            <div className="mt-8 relative z-10">
+              <p className="text-xs font-mono text-muted mb-3 uppercase tracking-wider">GitHub Activity</p>
+              <img
+                src={`https://github-readme-stats.vercel.app/api?username=${profile.githubUser}&show_icons=true&theme=transparent&hide_border=true&text_color=94a3b8&icon_color=6366f1&title_color=06b6d4&bg_color=00000000`}
+                alt="GitHub Stats"
+                className="rounded-xl w-full opacity-90 hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
             </div>
           </motion.div>
 
@@ -64,6 +83,24 @@ export default function About() {
               </h3>
               <p className="text-muted text-sm leading-relaxed">
                 Specialized in Asterisk and VICIdial deployments. I handle complex SIP routing, trunk configurations, and troubleshoot deep VoIP network issues.
+              </p>
+            </div>
+
+            <div className="glass p-6 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-emerald/50 transition-all duration-300">
+              <h3 className="text-xl font-heading font-semibold text-white mb-2 flex items-center gap-2">
+                <span className="text-emerald">☁️</span> Cloud & Automation
+              </h3>
+              <p className="text-muted text-sm leading-relaxed">
+                AWS & Oracle Cloud certified. I automate repetitive infrastructure tasks using Bash scripting, CI/CD pipelines, and configuration management tools.
+              </p>
+            </div>
+
+            <div className="glass p-6 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-violet/50 transition-all duration-300">
+              <h3 className="text-xl font-heading font-semibold text-white mb-2 flex items-center gap-2">
+                <span className="text-violet-400">🛡️</span> Security Minded
+              </h3>
+              <p className="text-muted text-sm leading-relaxed">
+                System hardening, GPG encryption, firewall rules, and disaster recovery are core to my engineering approach — not afterthoughts.
               </p>
             </div>
           </motion.div>

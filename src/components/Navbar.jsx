@@ -6,6 +6,7 @@ import { profile } from '../data/portfolio';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -13,7 +14,28 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const links = ['About', 'Skills', 'Experience', 'Projects', 'Contact'];
+  // Intersection Observer for active section tracking
+  useEffect(() => {
+    const sectionIds = ['about', 'skills', 'experience', 'projects', 'certifications', 'contact'];
+    const observers = [];
+
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: '-40% 0px -55% 0px' }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
+  const links = ['About', 'Skills', 'Experience', 'Projects', 'Certifications', 'Contact'];
 
   const scrollTo = (id) => {
     setIsOpen(false);
@@ -42,41 +64,48 @@ export default function Navbar() {
           </motion.div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {links.map((link, i) => (
-              <motion.button
-                key={link}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ delay: i * 0.1 }}
-                onClick={() => scrollTo(link)}
-                className="text-sm font-medium text-muted hover:text-white transition-colors relative group"
-              >
-                {link}
-                <span className="absolute -bottom-1.5 left-0 w-0 h-0.5 bg-grad transition-all duration-300 group-hover:w-full rounded-full"></span>
-              </motion.button>
-            ))}
+          <div className="hidden md:flex items-center gap-6">
+            {links.map((link, i) => {
+              const isActive = activeSection === link.toLowerCase();
+              return (
+                <motion.button
+                  key={link}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ delay: i * 0.1 }}
+                  onClick={() => scrollTo(link)}
+                  className={`text-sm font-medium transition-colors relative group ${
+                    isActive ? 'text-white' : 'text-muted hover:text-white'
+                  }`}
+                >
+                  {link}
+                  <span className={`absolute -bottom-1.5 left-0 h-0.5 bg-grad transition-all duration-300 rounded-full ${
+                    isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`} />
+                </motion.button>
+              );
+            })}
             <motion.a
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.6 }}
               href={profile.github}
               target="_blank"
               rel="noreferrer"
               className="btn-grad text-sm py-2 px-5 rounded-full shadow-[0_0_20px_rgba(var(--color-primary),0.3)] hover:shadow-[0_0_25px_rgba(var(--color-secondary),0.5)] transition-all"
             >
               <span className="relative z-10 flex items-center gap-2">
-                Github
+                GitHub
               </span>
             </motion.a>
           </div>
 
           {/* Mobile Toggle */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="md:hidden flex items-center gap-3">
             <button 
               className="text-white p-1"
               onClick={() => setIsOpen(!isOpen)}
@@ -97,22 +126,28 @@ export default function Navbar() {
             className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-xl pt-24 px-6 md:hidden"
           >
             <div className="flex flex-col gap-6">
-              {links.map((link) => (
-                <button
-                  key={link}
-                  onClick={() => scrollTo(link)}
-                  className="text-2xl font-heading font-medium text-left text-muted hover:text-white transition-colors border-b border-white/5 pb-4"
-                >
-                  {link}
-                </button>
-              ))}
+              {links.map((link) => {
+                const isActive = activeSection === link.toLowerCase();
+                return (
+                  <button
+                    key={link}
+                    onClick={() => scrollTo(link)}
+                    className={`text-2xl font-heading font-medium text-left border-b border-white/5 pb-4 transition-colors ${
+                      isActive ? 'text-cyan' : 'text-muted hover:text-white'
+                    }`}
+                  >
+                    {isActive && <span className="text-cyan mr-2 text-base">▶</span>}
+                    {link}
+                  </button>
+                );
+              })}
               <a
                 href={profile.github}
                 target="_blank"
                 rel="noreferrer"
                 className="btn-grad text-center justify-center mt-4"
               >
-                <span>Github Profile</span>
+                <span>GitHub Profile</span>
               </a>
             </div>
           </motion.div>
@@ -121,3 +156,5 @@ export default function Navbar() {
     </>
   );
 }
+
+

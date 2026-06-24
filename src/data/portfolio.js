@@ -8,6 +8,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/ganesh928k",
   github: "https://github.com/ganesh928k",
   githubUser: "ganesh928k",
+  avatarUrl: "https://avatars.githubusercontent.com/u/125724916?v=4",
   bio: "Detail-oriented L2 IT Support and DevOps Engineer with strong roots as a Linux System Administrator. I have hands-on experience in Linux infrastructure, Asterisk-based VoIP systems, SIP/PRI/GSM gateway administration, and enterprise automation. Passionate about building reliable, scalable systems.",
 };
 
