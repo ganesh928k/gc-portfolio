@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { profile } from '../data/portfolio';
 
 export default function About() {
+  const [statsError, setStatsError] = useState(false);
   return (
     <section id="about" className="py-24 relative z-10">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
@@ -50,15 +52,47 @@ export default function About() {
               </div>
             </div>
 
-            {/* GitHub Stats */}
+            {/* GitHub Profile Card - no external dependencies */}
             <div className="mt-8 relative z-10">
-              <p className="text-xs font-mono text-muted mb-3 uppercase tracking-wider">GitHub Activity</p>
-              <img
-                src={`https://github-readme-stats.vercel.app/api?username=${profile.githubUser}&show_icons=true&theme=transparent&hide_border=true&text_color=94a3b8&icon_color=6366f1&title_color=06b6d4&bg_color=00000000`}
-                alt="GitHub Stats"
-                className="rounded-xl w-full opacity-90 hover:opacity-100 transition-opacity"
-                loading="lazy"
-              />
+              <p className="text-xs font-mono text-muted mb-3 uppercase tracking-wider">GitHub Profile</p>
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="block rounded-xl border border-white/5 bg-surface p-5 hover:border-indigo/30 transition-all duration-300 group"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <img
+                    src={profile.avatarUrl}
+                    alt={profile.name}
+                    className="w-10 h-10 rounded-full border border-white/10"
+                  />
+                  <div>
+                    <p className="text-sm font-semibold text-white group-hover:text-cyan transition-colors">@{profile.githubUser}</p>
+                    <p className="text-xs text-muted font-mono">github.com</p>
+                  </div>
+                  <span className="ml-auto text-muted group-hover:text-white transition-colors text-sm">↗</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-xs font-mono">
+                  <div className="bg-indigo/10 rounded-lg p-3 border border-indigo/20 text-center">
+                    <p className="text-white font-bold text-base">20+</p>
+                    <p className="text-muted mt-0.5">Repos</p>
+                  </div>
+                  <div className="bg-cyan/10 rounded-lg p-3 border border-cyan/20 text-center">
+                    <p className="text-white font-bold text-base">3+</p>
+                    <p className="text-muted mt-0.5">Years</p>
+                  </div>
+                  <div className="bg-violet/10 rounded-lg p-3 border border-violet/20 text-center">
+                    <p className="text-white font-bold text-base">4</p>
+                    <p className="text-muted mt-0.5">Certs</p>
+                  </div>
+                </div>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {['Linux', 'Bash', 'Docker', 'VoIP', 'AWS'].map(tag => (
+                    <span key={tag} className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 text-muted border border-white/5">{tag}</span>
+                  ))}
+                </div>
+              </a>
             </div>
           </motion.div>
 
