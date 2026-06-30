@@ -7,7 +7,7 @@ export default function About() {
   return (
     <section id="about" className="py-24 relative z-10">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,7 +19,7 @@ export default function About() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          
+
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -27,11 +27,11 @@ export default function About() {
             className="glass-lg p-8 md:p-10 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo/10 blur-3xl rounded-full mix-blend-screen" />
-            
+
             <p className="text-muted leading-relaxed text-lg relative z-10">
               {profile.bio}
             </p>
-            
+
             <div className="mt-8 grid grid-cols-2 gap-6 relative z-10">
               <div className="border-l-4 border-indigo pl-4 relative py-2">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo/20 to-transparent -z-10 blur-md" />
@@ -75,7 +75,7 @@ export default function About() {
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-xs font-mono">
                   <div className="bg-indigo/10 rounded-lg p-3 border border-indigo/20 text-center">
-                    <p className="text-white font-bold text-base">20+</p>
+                    <p className="text-white font-bold text-base">10+</p>
                     <p className="text-muted mt-0.5">Repos</p>
                   </div>
                   <div className="bg-cyan/10 rounded-lg p-3 border border-cyan/20 text-center">
@@ -110,7 +110,7 @@ export default function About() {
                 I believe in building resilient infrastructure that scales. From bare-metal Linux servers to cloud environments, I focus on security, performance, and automation.
               </p>
             </div>
-            
+
             <div className="glass p-6 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-cyan/50 transition-all duration-300">
               <h3 className="text-xl font-heading font-semibold text-white mb-2 flex items-center gap-2">
                 <span className="text-cyan">📞</span> Telephony Expert
