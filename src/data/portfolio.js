@@ -1,7 +1,7 @@
 export const profile = {
   name: "Ganesh Choudhary",
-  role: "L2 IT Support & DevOps Engineer",
-  tagline: "Linux | VoIP | Cloud | Automation",
+  role: "DevOps Engineer @ Lynx Solutions",
+  tagline: "RHCE & RHCSA | Multi-Cloud Fleet & SRE | Observability & Telephony",
   location: "Jaipur, Rajasthan, India",
   email: "ganesh928k@gmail.com",
   phone: "+91-8696383333",
@@ -9,142 +9,156 @@ export const profile = {
   github: "https://github.com/ganesh928k",
   githubUser: "ganesh928k",
   avatarUrl: "https://avatars.githubusercontent.com/u/125724916?v=4",
-  bio: "Detail-oriented L2 IT Support and DevOps Engineer with strong roots as a Linux System Administrator. I have hands-on experience in Linux infrastructure, Asterisk-based VoIP systems, SIP/PRI/GSM gateway administration, and enterprise automation. Passionate about building reliable, scalable systems.",
+  bio: "RHCE & RHCSA certified DevOps Engineer managing 60+ active production Linux nodes across multi-cloud infrastructure. Specialized in zero-alert SRE observability (Prometheus/Grafana), Docker Compose container orchestration on ARM64, Redis in-memory streaming, and high-availability Asterisk/VICIdial telephony clusters.",
 };
 
 export const skills = [
   {
-    category: "Linux & OS",
+    category: "Linux Fleet & OS",
     icon: "🐧",
     color: "#6366f1",
     items: [
-      { name: "CentOS / RHEL / AlmaLinux", level: 95 },
-      { name: "Ubuntu / Debian", level: 90 },
-      { name: "openSUSE", level: 80 },
-      { name: "System Hardening & Security", level: 88 },
-      { name: "User & Service Management", level: 92 },
+      { name: "Production Linux Fleet (60+ Nodes)", level: 96 },
+      { name: "RHEL / Rocky / AlmaLinux / CentOS", level: 95 },
+      { name: "Ubuntu / Debian / openSUSE", level: 90 },
+      { name: "Kernel Tuning, LVM & Storage Recovery", level: 92 },
+      { name: "System Hardening & Zero-Trust Access", level: 94 },
     ]
   },
   {
-    category: "VoIP & Telephony",
-    icon: "📡",
-    color: "#06b6d4",
-    items: [
-      { name: "Asterisk PBX", level: 92 },
-      { name: "VICIdial Dialer", level: 90 },
-      { name: "SIP / RTP Protocols", level: 88 },
-      { name: "PRI / GSM Gateways", level: 85 },
-      { name: "Carrier Configuration", level: 83 },
-    ]
-  },
-  {
-    category: "Cloud & Infrastructure",
+    category: "SRE, Cloud & Containers",
     icon: "☁️",
     color: "#8b5cf6",
     items: [
-      { name: "Oracle Cloud (OCI)", level: 80 },
-      { name: "AWS Solutions", level: 72 },
-      { name: "Apache / Nginx", level: 88 },
-      { name: "MySQL / MariaDB", level: 85 },
-      { name: "Backup & DR", level: 82 },
+      { name: "Prometheus, Grafana & Node Exporter", level: 94 },
+      { name: "Docker & Docker Compose (x86_64 / ARM64)", level: 92 },
+      { name: "AWS & Oracle Cloud (OCI)", level: 85 },
+      { name: "Redis In-Memory Streaming & Caching", level: 88 },
+      { name: "FinOps & Multi-Cloud Infrastructure Audits", level: 86 },
     ]
   },
   {
-    category: "Networking & Automation",
+    category: "VoIP & Telecom Infrastructure",
+    icon: "📡",
+    color: "#06b6d4",
+    items: [
+      { name: "Asterisk PBX & VICIdial Clusters", level: 95 },
+      { name: "SIP / RTP / PRI / GSM Gateways", level: 90 },
+      { name: "Kamailio SIP Proxy & Load Balancing", level: 86 },
+      { name: "MariaDB Galera Multi-Master Replication", level: 88 },
+      { name: "Keepalived VIP Automated Failover", level: 87 },
+    ]
+  },
+  {
+    category: "Automation, CI/CD & Security",
     icon: "🔗",
     color: "#10b981",
     items: [
-      { name: "Firewall / Router Config", level: 85 },
-      { name: "Shell Scripting (Bash)", level: 90 },
-      { name: "System Monitoring", level: 88 },
-      { name: "Log Analysis", level: 85 },
-      { name: "SOP Creation & Docs", level: 80 },
+      { name: "Shell Scripting (Bash) & Python Automation", level: 94 },
+      { name: "Automated Role-Based SSH Governance CLI", level: 92 },
+      { name: "CI/CD Deployment Pipelines & GitOps", level: 88 },
+      { name: "Firewall (iptables / firewalld) & Network Tuning", level: 90 },
+      { name: "Automated Offsite Backup (Rsync/SSH/GPG)", level: 90 },
     ]
   }
 ];
 
 export const experience = [
   {
-    company: "Avyukta Intellicall",
-    role: "L2 DevOps Engineer",
-    period: "2024 – Present",
+    company: "Lynx Solutions",
+    role: "DevOps Engineer",
+    period: "Aug 2026 – Present",
+    type: "Current Role",
+    color: "#6366f1",
+    responsibilities: [
+      "Manage 60+ active production Linux nodes across multi-cloud infrastructure ensuring 99.99% uptime and zero-alert observability",
+      "Migrate monolithic enterprise workloads into containerized Docker Compose microservice fleets on ARM64 nodes with automated health checks",
+      "Architect centralized Prometheus, Grafana, Node Exporter, and Alertmanager telemetry, achieving zero false-positive alerts",
+      "Deploy and maintain Redis in-memory streaming pipelines for low-latency asynchronous workload processing",
+      "Perform multi-cloud FinOps infrastructure audits optimizing recurring cloud spend across all operating regions"
+    ]
+  },
+  {
+    company: "Avyukta Intellicall Consulting",
+    role: "L2 DevOps Engineer / Infra Lead",
+    period: "2024 – Aug 2026",
     type: "Promoted",
     color: "#06b6d4",
     responsibilities: [
-      "Leading infrastructure upgrades and DevOps pipeline improvements",
-      "Architecting scalable dialer deployments across multi-server environments",
-      "Implementing CI/CD practices for configuration management",
-      "Mentoring L1 support team and handling critical escalations",
-      "Managing complex networking and firewall rules across global deployments",
+      "Architected high-availability VICIdial telephony clusters with MariaDB Galera multi-master replication and Keepalived VIP failover",
+      "Developed automated role-based SSH governance and developer access CLI platforms to enforce least-privilege security",
+      "Led production disaster recovery initiatives, securing 97.5% load reduction and 200+ GB saturated storage recovery with zero downtime",
+      "Mentored L1 support engineers and served as final technical escalation authority for critical production incidents",
+      "Configured and hardened Linux environments across CentOS, AlmaLinux, and openSUSE distributions"
     ]
   },
   {
-    company: "Avyukta Intellicall",
+    company: "Avyukta Intellicall Consulting",
     role: "Linux System & VoIP Engineer",
     period: "2023 – 2024",
     type: "Full-Time",
-    color: "#6366f1",
+    color: "#8b5cf6",
     responsibilities: [
-      "Installed, configured, and maintained Linux servers for global clients",
-      "Managed PBX/Asterisk instances, trunk setups, and SIP routing",
-      "Troubleshot networking issues, packet loss, and latency problems",
-      "Handled backup, disaster recovery, and system hardening",
+      "Provisioned and maintained production Linux servers for global telecom and VoIP clients",
+      "Configured Asterisk PBX trunks, SIP routing logic, and PRI/GSM telecom gateways",
+      "Troubleshot complex networking issues, packet drops, RTP latency, and firewall routing policies",
+      "Engineered automated offsite backup routines using Rsync over SSH with GPG encryption"
     ]
   },
   {
-    company: "Avyukta Intellicall",
+    company: "Avyukta Intellicall Consulting",
     role: "L1 Support Engineer Intern",
-    period: "2023",
+    period: "Jan 2023 – Aug 2023",
     type: "Internship",
     color: "#10b981",
     responsibilities: [
-      "Started career by providing foundational IT support and troubleshooting.",
-      "Assisted senior engineers in managing Linux servers and VoIP systems.",
-      "Handled initial escalations and system monitoring tasks.",
+      "Started career delivering foundational Linux support and telephony system troubleshooting",
+      "Assisted senior infrastructure engineers with server maintenance, system health checks, and log monitoring",
+      "Automated initial incident triaging workflows for customer server infrastructure"
     ]
   }
 ];
 
 export const projects = [
   {
-    title: "VICIdial Cluster Architecture",
-    description: "Architected and deployed a highly available VICIdial cluster setup, segregating Web, MySQL, and Asterisk telephony servers to handle large-scale concurrent calls efficiently.",
-    tech: ["Asterisk", "VICIdial", "MySQL", "Clustering"],
+    title: "Enterprise Multi-Cloud Observability Suite",
+    description: "Centralized monitoring and telemetry suite across 60+ active production Linux nodes in multi-cloud infrastructure. Engineered granular Node Exporter telemetry, custom Grafana operational dashboards, and proactive Alertmanager thresholds, achieving zero false-positive alerts.",
+    tech: ["Prometheus", "Grafana", "Node Exporter", "Alertmanager", "Multi-Cloud"],
     github: "https://github.com/ganesh928k",
     link: null,
-    icon: "📞"
+    icon: "📊"
   },
   {
-    title: "Cross-Platform VICIdial Installations",
-    description: "Performed from-scratch installations and configurations of VICIdial across multiple operating systems including openSUSE, CentOS, and AlmaLinux.",
-    tech: ["Linux", "openSUSE", "CentOS", "AlmaLinux"],
-    github: "https://github.com/ganesh928k",
-    link: null,
-    icon: "🐧"
-  },
-  {
-    title: "Node.js OpenWA Docker Setup",
-    description: "Configured and deployed a containerized Node.js application (OpenWA) using Docker for the internal development team, ensuring isolated and reproducible environments.",
-    tech: ["Node.js", "Docker", "OpenWA", "Containers"],
+    title: "Monolithic Enterprise Microservices Modernization",
+    description: "Containerized legacy monolithic enterprise workloads into isolated Docker Compose microservice fleets running on cost-effective ARM64 Linux nodes. Implemented automated health check loops, isolated network bridges, and zero-downtime rolling maintenance.",
+    tech: ["Docker Compose", "ARM64", "Microservices", "Nginx", "Linux"],
     github: "https://github.com/ganesh928k",
     link: null,
     icon: "🐳"
   },
   {
-    title: "Secure Remote Backup System",
-    description: "Automated offsite backup strategy using Rsync over SSH with GPG encryption, ensuring data integrity and quick disaster recovery.",
-    tech: ["Rsync", "SSH", "GPG", "Automation"],
+    title: "Automated Role-Based SSH Governance CLI Engine",
+    description: "Engineered an automated Python/Bash CLI security platform managing developer SSH access, cryptographic key rotation, and granular sudo privileges across multi-cloud server fleets. Enforced zero-trust credential hygiene and instant revocation.",
+    tech: ["Python", "Bash", "SSH Hardening", "Security", "Linux"],
     github: "https://github.com/ganesh928k",
     link: null,
     icon: "🔒"
+  },
+  {
+    title: "High-Availability VICIdial VoIP Cluster",
+    description: "Architected enterprise-grade telephony dialer infrastructure featuring MariaDB Galera multi-master clustering, Keepalived Virtual IP (VIP) automated failover, and Kamailio SIP load balancing to handle high-concurrency carrier call traffic with zero downtime.",
+    tech: ["Asterisk", "VICIdial", "MariaDB Galera", "Keepalived", "Kamailio"],
+    github: "https://github.com/ganesh928k",
+    link: null,
+    icon: "📞"
   }
 ];
 
 export const certifications = [
   {
-    name: "Architecting Solutions on AWS",
-    issuer: "Amazon Web Services",
-    year: "April 2026",
+    name: "Red Hat Certified Engineer (RHCE)",
+    issuer: "Red Hat",
+    year: "2024",
     status: "Completed"
   },
   {
@@ -154,13 +168,13 @@ export const certifications = [
     status: "Completed"
   },
   {
-    name: "Red Hat Certified Engineer (RHCE)",
-    issuer: "Red Hat",
-    year: "2024",
-    status: "Completed"
+    name: "AWS Solutions Architect",
+    issuer: "Amazon Web Services",
+    year: "Target: April 2026",
+    status: "In Progress"
   },
   {
-    name: "Oracle Cloud Infrastructure Foundations",
+    name: "Oracle Cloud Infrastructure (OCI) Foundations",
     issuer: "Oracle",
     year: "2023",
     status: "Completed"

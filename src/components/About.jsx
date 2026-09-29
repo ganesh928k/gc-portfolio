@@ -35,20 +35,20 @@ export default function About() {
             <div className="mt-8 grid grid-cols-2 gap-6 relative z-10">
               <div className="border-l-4 border-indigo pl-4 relative py-2">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo/20 to-transparent -z-10 blur-md" />
-                <p className="text-4xl font-heading font-bold text-white mb-1">3+</p>
+                <p className="text-4xl font-heading font-bold text-white mb-1">3.5+</p>
                 <p className="text-sm font-mono text-muted uppercase">Years Experience</p>
               </div>
-              <div className="border-l-2 border-cyan/30 pl-4">
-                <p className="text-3xl font-heading font-bold text-white mb-1">20+</p>
-                <p className="text-sm font-mono text-muted uppercase">Servers Managed</p>
+              <div className="border-l-2 border-emerald pl-4">
+                <p className="text-3xl font-heading font-bold text-white mb-1">60+</p>
+                <p className="text-sm font-mono text-muted uppercase">Active Production Nodes</p>
               </div>
-              <div className="border-l-2 border-violet/30 pl-4">
+              <div className="border-l-2 border-cyan/30 pl-4">
                 <p className="text-3xl font-heading font-bold text-white mb-1">50+</p>
                 <p className="text-sm font-mono text-muted uppercase">VoIP Deployments</p>
               </div>
-              <div className="border-l-2 border-emerald/30 pl-4">
+              <div className="border-l-2 border-violet/30 pl-4">
                 <p className="text-3xl font-heading font-bold text-white mb-1">4</p>
-                <p className="text-sm font-mono text-muted uppercase">Certifications</p>
+                <p className="text-sm font-mono text-muted uppercase">Certifications (RHCE / RHCSA)</p>
               </div>
             </div>
 
@@ -75,12 +75,12 @@ export default function About() {
                 </div>
                 <div className="grid grid-cols-3 gap-2 text-xs font-mono">
                   <div className="bg-indigo/10 rounded-lg p-3 border border-indigo/20 text-center">
-                    <p className="text-white font-bold text-base">10+</p>
-                    <p className="text-muted mt-0.5">Repos</p>
+                    <p className="text-white font-bold text-base">60+</p>
+                    <p className="text-muted mt-0.5">Fleet Nodes</p>
                   </div>
                   <div className="bg-cyan/10 rounded-lg p-3 border border-cyan/20 text-center">
-                    <p className="text-white font-bold text-base">3+</p>
-                    <p className="text-muted mt-0.5">Years</p>
+                    <p className="text-white font-bold text-base">3.5+</p>
+                    <p className="text-muted mt-0.5">Years Exp</p>
                   </div>
                   <div className="bg-violet/10 rounded-lg p-3 border border-violet/20 text-center">
                     <p className="text-white font-bold text-base">4</p>
@@ -88,7 +88,7 @@ export default function About() {
                   </div>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-1.5">
-                  {['Linux', 'Bash', 'Docker', 'VoIP', 'AWS'].map(tag => (
+                  {['Linux Fleet', 'Docker Compose', 'ARM64', 'Prometheus', 'Asterisk HA', 'AWS'].map(tag => (
                     <span key={tag} className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 text-muted border border-white/5">{tag}</span>
                   ))}
                 </div>
@@ -104,37 +104,37 @@ export default function About() {
           >
             <div className="glass p-6 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-indigo/50 transition-all duration-300">
               <h3 className="text-xl font-heading font-semibold text-white mb-2 flex items-center gap-2">
-                <span className="text-indigo">⚡</span> Infrastructure First
+                <span className="text-indigo">⚡</span> Multi-Cloud Fleet &amp; SRE
               </h3>
               <p className="text-muted text-sm leading-relaxed">
-                I believe in building resilient infrastructure that scales. From bare-metal Linux servers to cloud environments, I focus on security, performance, and automation.
+                Overseeing 60+ active production Linux nodes across multi-cloud infrastructure with zero-alert Prometheus and Grafana observability, proactive thresholding, and 99.99% uptime.
               </p>
             </div>
 
             <div className="glass p-6 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-cyan/50 transition-all duration-300">
               <h3 className="text-xl font-heading font-semibold text-white mb-2 flex items-center gap-2">
-                <span className="text-cyan">📞</span> Telephony Expert
+                <span className="text-cyan">🐳</span> Microservices Modernization
               </h3>
               <p className="text-muted text-sm leading-relaxed">
-                Specialized in Asterisk and VICIdial deployments. I handle complex SIP routing, trunk configurations, and troubleshoot deep VoIP network issues.
+                Containerizing monolithic enterprise workloads into isolated Docker Compose microservice fleets running on ARM64 nodes with automated health check loops and zero-downtime rollouts.
               </p>
             </div>
 
             <div className="glass p-6 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-emerald/50 transition-all duration-300">
               <h3 className="text-xl font-heading font-semibold text-white mb-2 flex items-center gap-2">
-                <span className="text-emerald">☁️</span> Cloud & Automation
+                <span className="text-emerald">📞</span> Enterprise Telephony HA
               </h3>
               <p className="text-muted text-sm leading-relaxed">
-                AWS & Oracle Cloud certified. I automate repetitive infrastructure tasks using Bash scripting, CI/CD pipelines, and configuration management tools.
+                Specialized in carrier-grade Asterisk &amp; VICIdial clusters with MariaDB Galera multi-master clustering, Keepalived Virtual IP (VIP) automated failover, and Kamailio SIP load balancing.
               </p>
             </div>
 
             <div className="glass p-6 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-violet/50 transition-all duration-300">
               <h3 className="text-xl font-heading font-semibold text-white mb-2 flex items-center gap-2">
-                <span className="text-violet-400">🛡️</span> Security Minded
+                <span className="text-violet-400">🛡️</span> Zero-Trust Access &amp; Security
               </h3>
               <p className="text-muted text-sm leading-relaxed">
-                System hardening, GPG encryption, firewall rules, and disaster recovery are core to my engineering approach — not afterthoughts.
+                Engineered automated role-based SSH governance and developer access CLI platforms, cryptographic key rotation, firewall isolation, and GPG encrypted disaster recovery routines.
               </p>
             </div>
           </motion.div>

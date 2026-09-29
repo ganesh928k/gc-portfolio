@@ -116,6 +116,19 @@ function StatWidget() {
       <div className="space-y-4">
         <div>
           <div className="flex justify-between font-mono text-xs mb-1.5">
+            <span className="text-muted">ACTIVE_FLEET</span>
+            <span className="text-emerald">60+ Nodes (Online)</span>
+          </div>
+          <div className="h-1.5 w-full bg-surface rounded-full overflow-hidden">
+            <motion.div 
+              initial={{ width: 0 }} animate={{ width: '100%' }} 
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="h-full bg-gradient-to-r from-emerald to-cyan"
+            />
+          </div>
+        </div>
+        <div>
+          <div className="flex justify-between font-mono text-xs mb-1.5">
             <span className="text-muted">CPU_LOAD</span>
             <span className="text-cyan">34%</span>
           </div>
@@ -129,12 +142,12 @@ function StatWidget() {
         </div>
         <div>
           <div className="flex justify-between font-mono text-xs mb-1.5">
-            <span className="text-muted">MEM_USAGE</span>
-            <span className="text-violet">68%</span>
+            <span className="text-muted">OBSERVABILITY</span>
+            <span className="text-violet">0 Alerts (Prometheus)</span>
           </div>
           <div className="h-1.5 w-full bg-surface rounded-full overflow-hidden">
             <motion.div 
-              initial={{ width: 0 }} animate={{ width: '68%' }} 
+              initial={{ width: 0 }} animate={{ width: '100%' }} 
               transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
               className="h-full bg-gradient-to-r from-violet to-indigo"
             />
@@ -164,25 +177,29 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <AvailableBadge />
-            <span className="badge bg-indigo/10 text-indigo border border-indigo/20 mb-4 inline-flex items-center min-w-[160px]">
+            <span className="badge bg-indigo/10 text-indigo border border-indigo/20 mb-4 inline-flex items-center min-w-[180px]">
               <TypeAnimation
                 sequence={[
-                  'Linux Engineer', 2000,
-                  'VoIP Engineer', 2000,
-                  'Cloud Engineer', 2000,
-                  'Automation Engineer', 2000,
+                  'DevOps Engineer', 2000,
+                  'Multi-Cloud SRE', 2000,
+                  'Linux Fleet Ops', 2000,
+                  'Observability Specialist', 2000,
+                  'VoIP & Telecom Lead', 2000,
                 ]}
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}
               />
             </span>
-            <h1 className="text-5xl md:text-7xl font-bold font-heading leading-tight tracking-tight mt-2 mb-4">
+            <h1 className="text-5xl md:text-7xl font-bold font-heading leading-tight tracking-tight mt-2 mb-3">
               Hi, I'm <br />
               <span className="grad-text pb-2">{profile.name.split(' ')[0]}</span>
             </h1>
+            <h2 className="text-xl md:text-2xl font-semibold text-slate-200 mb-4">
+              DevOps Engineer @ Lynx Solutions | RHCE &amp; RHCSA | Multi-Cloud Fleet &amp; SRE
+            </h2>
             <p className="text-lg md:text-xl text-muted max-w-xl leading-relaxed">
-              {profile.role} specializing in building scalable Linux infrastructure, automating deployments, and maintaining robust enterprise systems.
+              Managing 60+ active production Linux nodes across multi-cloud infrastructure with zero-alert observability, Docker Compose containerization on ARM64, and high-availability enterprise clusters.
             </p>
           </motion.div>
 

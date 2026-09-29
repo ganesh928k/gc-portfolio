@@ -3,12 +3,12 @@ import { motion, useInView } from 'framer-motion';
 
 const COMMANDS = {
   help:       'Available commands: whoami, skills, experience, certs, contact, uptime, clear',
-  whoami:     'Ganesh Choudhary\nRole    : L2 DevOps & Linux Systems Engineer\nLocation: Jaipur, Rajasthan, India\nStatus  : ● Available for Opportunities',
-  skills:     'Linux     : CentOS / AlmaLinux / Ubuntu / RHEL [95%]\nVoIP      : Asterisk PBX / VICIdial / SIP / PRI  [92%]\nCloud     : Oracle OCI / AWS Solutions Architect  [80%]\nScripting : Bash / Shell Automation               [90%]\nDatabase  : MySQL / MariaDB                       [85%]\nNetworking: Firewall / Routing / Packet Analysis  [85%]',
-  experience: 'Avyukta Intellicall — L2 DevOps Engineer (2024–Present)\n  ↳ Promoted: Leading infra upgrades & CI/CD improvements\n\nAvyukta Intellicall — Linux & VoIP Engineer (2023–2024)\n  ↳ PBX/Asterisk, SIP routing, system hardening\n\nAvyukta Intellicall — L1 Support Intern (2023)\n  ↳ Foundational IT support & server monitoring',
-  certs:      '✓ RHCSA — Red Hat Certified System Administrator (2023)\n✓ RHCE  — Red Hat Certified Engineer (2024)\n✓ AWS   — Architecting Solutions on AWS (April 2026)\n✓ OCI   — Oracle Cloud Infrastructure Foundations (2023)',
+  whoami:     'Ganesh Choudhary\nRole    : DevOps Engineer @ Lynx Solutions\nCerts   : RHCE & RHCSA Certified\nFocus   : Multi-Cloud Fleet (60+ Nodes) | SRE & Observability | Containerization\nStatus  : ● Online & Operating Production Infrastructure',
+  skills:     'Linux Fleet  : 60+ Multi-Cloud Nodes / RHEL / Rocky / AlmaLinux / Ubuntu [96%]\nObservability: Prometheus / Grafana / Node Exporter / Alertmanager       [94%]\nContainers   : Docker & Docker Compose on ARM64 / Redis Streaming           [92%]\nTelephony    : Asterisk PBX / VICIdial / Kamailio / Galera Cluster          [95%]\nCloud & Sec  : AWS / OCI / Automated SSH Governance / Bash & Python        [92%]',
+  experience: 'Lynx Solutions — DevOps Engineer (Aug 2026–Present)\n  ↳ 60+ Linux nodes, Docker microservices on ARM64, Prometheus SRE\n\nAvyukta Intellicall — L2 DevOps Engineer / Infra Lead (2024–Aug 2026)\n  ↳ High-availability VoIP clusters, Galera DB, SSH governance CLI\n\nAvyukta Intellicall — Linux & VoIP Engineer (2023–2024)\n  ↳ Asterisk PBX, SIP routing, firewall & Rsync/GPG disaster recovery\n\nAvyukta Intellicall — L1 Support Intern (Jan 2023–Aug 2023)\n  ↳ Foundational IT support & Linux server monitoring',
+  certs:      '✓ RHCE  — Red Hat Certified Engineer (2024)\n✓ RHCSA — Red Hat Certified System Administrator (2023)\n✓ AWS   — AWS Solutions Architect (Target: April 2026)\n✓ OCI   — Oracle Cloud Infrastructure Foundations (2023)',
   contact:    'Email   : ganesh928k@gmail.com\nPhone   : +91-8696383333\nLinkedIn: linkedin.com/in/ganesh928k\nGitHub  : github.com/ganesh928k',
-  uptime:     'System uptime: 9d 14h 22m\nServices: asterisk ● | nginx ● | mysqld ● | sshd ●\nLoad avg: 0.42, 0.38, 0.31',
+  uptime:     'System uptime: 42d 18h 12m\nNodes: 60+ online (multi-cloud)\nServices: prometheus ● | grafana ● | docker ● | nginx ● | asterisk ●\nAlerts: 0 active (zero false-positives)',
   sudo:       '[sudo] password for guest: \nSorry, try again.\n[sudo] password for guest: \nSorry, user guest is not in the sudoers file. This incident will be reported.',
 };
 
