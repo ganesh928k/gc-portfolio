@@ -14,7 +14,7 @@ export default function Footer() {
           
           <div className="flex items-center gap-2 text-xl font-heading font-bold">
             <span className="grad-text">{profile.name.split(' ')[0]}</span>
-            <span className="text-white">.sh</span>
+            <span className="text-cyan">.me</span>
           </div>
 
           <div className="flex items-center gap-4">

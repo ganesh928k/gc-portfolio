@@ -60,7 +60,7 @@ export default function Navbar() {
             onClick={() => window.scrollTo(0, 0)}
           >
             <span className="grad-text">{profile.name.split(' ')[0]}</span>
-            <span className="text-white">.sh</span>
+            <span className="text-cyan">.me</span>
           </motion.div>
 
           {/* Desktop Nav */}
