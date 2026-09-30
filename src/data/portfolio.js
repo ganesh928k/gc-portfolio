@@ -158,25 +158,25 @@ export const certifications = [
   {
     name: "Red Hat Certified Engineer (RHCE)",
     issuer: "Red Hat",
-    year: "2024",
+    year: "October 2025",
     status: "Completed"
   },
   {
     name: "Red Hat Certified System Administrator (RHCSA)",
     issuer: "Red Hat",
-    year: "2023",
+    year: "February 2025",
     status: "Completed"
   },
   {
-    name: "AWS Solutions Architect",
+    name: "Architecting Solutions on AWS",
     issuer: "Amazon Web Services",
-    year: "Target: April 2026",
-    status: "In Progress"
+    year: "April 2026",
+    status: "Completed"
   },
   {
     name: "Oracle Cloud Infrastructure (OCI) Foundations",
     issuer: "Oracle",
-    year: "2023",
+    year: "August 2025",
     status: "Completed"
   }
 ];
