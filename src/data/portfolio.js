@@ -172,7 +172,7 @@ export const certifications = [
     issuer: "Amazon Web Services (AWS)",
     year: "October 2026",
     status: "Completed",
-    credentialUrl: "https://coursera.org/verify/professional-cert/K9RTEKR1U17K"
+    credentialUrl: "https://www.coursera.org/account/accomplishments/professional-cert/K9RIFKR1L17K"
   },
   {
     name: "Oracle Cloud Infrastructure (OCI) Foundations",

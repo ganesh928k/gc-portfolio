@@ -48,6 +48,16 @@ export default function Certifications() {
                       {cert.name}
                     </h3>
                     <p className="text-sm font-mono text-muted">{cert.issuer}</p>
+                    {cert.credentialUrl && (
+                      <a
+                        href={cert.credentialUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-mono text-cyan hover:underline mt-4 relative z-20 group-hover:text-white transition-colors"
+                      >
+                        Verify Credential &rarr;
+                      </a>
+                    )}
                   </div>
                 </div>
               </TiltCard>
