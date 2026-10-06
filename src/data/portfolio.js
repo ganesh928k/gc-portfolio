@@ -168,10 +168,11 @@ export const certifications = [
     status: "Completed"
   },
   {
-    name: "Architecting Solutions on AWS",
-    issuer: "Amazon Web Services",
-    year: "April 2026",
-    status: "Completed"
+    name: "AWS Cloud Solutions Architect",
+    issuer: "Amazon Web Services (AWS)",
+    year: "October 2026",
+    status: "Completed",
+    credentialUrl: "https://coursera.org/verify/professional-cert/K9RTEKR1U17K"
   },
   {
     name: "Oracle Cloud Infrastructure (OCI) Foundations",
